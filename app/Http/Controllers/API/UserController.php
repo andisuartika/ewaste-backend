@@ -84,6 +84,47 @@ class UserController extends Controller
         return ResponseFormatter::success($request->user(), 'Data profile user berhasil diambil');
     }
 
+    public function getUser(Request $request){
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $alamat = $request->input('alamat');
+        $roles = $request->input('roles');
+
+        if ($id) {
+            $sampah = User::find($id);
+
+            if ($sampah) {
+                return ResponseFormatter::success(
+                    $sampah,
+                    'Data sampah berhasil diambil'
+                );
+            } else {
+                return ResponseFormatter::error(
+                    null,
+                    'Data sampah tidak ada',
+                    404
+                );
+            }
+        }
+
+        // dd($name);
+
+        $users = User::all();
+        if ($name) {
+            $users = User::where('name', 'like', '%'. $name.'%' )->get();
+        }
+        if ($alamat) {
+            $users = User::where('alamat', 'like', '%'. $alamat.'%' )->get();
+        }
+        if ($roles) {
+           $users = User::where('roles', 'like', '%'. $roles.'%' )->get();
+        }
+        return ResponseFormatter::success(
+            $users,
+            'Data User berhasil diambil'
+        );
+    }
+
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
@@ -93,25 +134,10 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
             'alamat' => ['required', 'string'],
             'noHp' => ['nullable', 'string', 'max:255', 'unique:users,noHp,' . $user->id],
-            'password' => ['nullable']
+            'profile_photo_path' => 'mimes:png,jpg,jpeg',
         ]);
 
-        $data['password'] = Hash::make($request->password);
-
-        $user->update($data);
-
-        return ResponseFormatter::success($user, 'Profile updated');
-    }
-
-    public function photoProfileUpdate(Request $request)
-    {
-        $user = Auth::user();
-        $data = $request->all();
-        $request->validate([
-            'profile_photo_path' => 'required|mimes:png,jpg,jpeg',
-        ]);
-
-
+               
         try {
             if ($request->hasFile('profile_photo_path')) {
                 $fileName = $user->name . '-' . date("Y-m-d") . '-' . time() . '.' . $request->file('profile_photo_path')->getClientOriginalExtension();
@@ -127,7 +153,41 @@ class UserController extends Controller
             ], 500);
         }
 
-        return ResponseFormatter::success($user, 'Photo Profile updated');
+        
+
+        return ResponseFormatter::success($user, 'Profile updated');
+    }
+
+    public function changePassword(Request $request){
+        $user = Auth::user();
+        $data = $request->all();
+
+        try {
+            $request->validate([
+                'email' => 'email|required',
+                'password' => 'required',
+                'new_password' => 'required'
+            ]);
+
+            $user = User::where('email', $request->email)->first();
+
+            if (!Hash::check($request->password, $user->password, [])) {
+                throw new \Exception('Invalid Credential');
+            }
+
+            $data['password'] = Hash::make($request->new_password);
+            $user->update($data);
+            
+            return ResponseFormatter::success([
+                // 'user' => $user,
+                'message' => 'Password has changed',
+            ], 'Authenticated');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Password Salah',
+                'error' => $error
+            ], 'Authentication Failed', 500);
+        }
     }
 
     public function logout(Request $request)
