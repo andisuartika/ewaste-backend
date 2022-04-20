@@ -3,11 +3,11 @@
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="dist/images/logo.svg" rel="shortcut icon">
+        <link href="img/e-waste.png" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="E-Waste Bali. Login Admin">
         <meta name="keywords" content="ewastebali, ewaste, wastebali">
-        <title>EWaste - Login Admin</title>
+        <title>E-Waste - Login Admin</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="dist/css/app.css" />
         <!-- END: CSS Assets-->

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
             return view('dashboard');
         })->name('dashboard');
     });
+    Route::get('/', [PageController::class, 'loadPage'])->name('dashboard');
+    Route::get('page/{layout}/{pageName}', [PageController::class, 'loadPage'])->name('page');
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
