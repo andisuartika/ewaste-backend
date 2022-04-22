@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div> --}}
-            {{-- <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div> --}}
+            <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
             <div class="w-full sm:w-auto mr-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-gray-700">
                     <input type="text" class="input w-56 box pr-10 placeholder-theme-13" placeholder="Search...">
@@ -35,7 +35,7 @@
             </div>
         </div>
         <!-- BEGIN: Users Layout -->
-        
+
             <div class="intro-y col-span-12 md:col-span-6">
                 <div class="box">
                     <div class="flex flex-col lg:flex-row items-center p-5 border-b border-gray-200">

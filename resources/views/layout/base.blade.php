@@ -22,9 +22,19 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
     <!-- END: CSS Assets-->
+
+    @livewireStyles
+
+    <!-- sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 <!-- END: Head -->
 
 @yield('body')
+
+@livewireScripts
 
 </html>

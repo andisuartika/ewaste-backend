@@ -2,11 +2,7 @@
 <div class="top-bar">
     <!-- BEGIN: Breadcrumb -->
     <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
-        <a href="{{ route('page', ['simple-menu', 'dashboard']) }}">
-            <i class="fas fa-bars fa-2x"></i>
-        </a>
-
-        <a href="" class="ml-12">Application</a>
+        <a href="" class="ml-3">Application</a>
         <i data-feather="chevron-right" class="breadcrumb__icon"></i>
         <a href="" class="breadcrumb--active">{{ $first_page_name }}</a>
     </div>

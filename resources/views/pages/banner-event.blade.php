@@ -93,6 +93,8 @@
                 <option>50</option>
             </select>
         </div>
+
+        @livewire('nasabah-create')
         <!-- END: Pagination -->
     </div>
 @endsection

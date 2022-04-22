@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('welcome');
+// Route::get('/', function () {
+//     return view('dashboard');
+// })->name('welcome');
 
 
 // USER ROLES
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     });
     Route::get('/', [PageController::class, 'loadPage'])->name('dashboard');
     Route::get('page/{layout}/{pageName}', [PageController::class, 'loadPage'])->name('page');
+   
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
