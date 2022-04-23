@@ -34,7 +34,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="@yield('petugas')" class="side-menu @yield('petugas')">
+                            <a href="{{ route('petugas') }}" class="side-menu @yield('petugas')">
                                 <div class="side-menu__icon"> <i data-feather="user-check"></i> </div>
                                 <div class="side-menu__title"> Petugas </div>
                             </a>

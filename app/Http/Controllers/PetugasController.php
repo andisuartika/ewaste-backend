@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PetugasController extends Controller
@@ -13,7 +14,11 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        return view('pages.petugas');
+        $petugas = User::where('roles','PETUGAS')->orWhere('roles','ADMIN')->get();
+        $petugasCount = User::where('roles','PETUGAS')->orWhere('roles','ADMIN')->count();
+
+
+        return view('pages.petugas', compact('petugas','petugasCount'));
     }
 
     /**
@@ -45,7 +50,8 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
-        //
+        $petugas = User::find($id);
+        return view('pages.petugasDetail', compact('petugas'));
     }
 
     /**

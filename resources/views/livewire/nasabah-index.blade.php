@@ -4,11 +4,11 @@
         <table class="table table-report table-report--bordered display datatable w-full">
             <thead>
                 <tr>
-                    <th class="border-b-2 whitespace-no-wrap">NASABAH</th>
-                    <th class="border-b-2 whitespace-no-wrap">EMAIL</th>
-                    <th class="border-b-2 whitespace-no-wrap">NO HANPHONE</th>
+                    <th class="border-b-2  whitespace-no-wrap">NASABAH</th>
+                    <th class="border-b-2  whitespace-no-wrap">EMAIL</th>
+                    <th class="border-b-2  whitespace-no-wrap">NO HANPHONE</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">STATUS</th>
-                    <th class="border-b-2 text-center whitespace-no-wrap">ACTIONS</th>
+                    <th class="border-b-2  text-center whitespace-no-wrap">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +44,10 @@
                     </td>
                     <td class="border-b w-5">
                         <div class="flex sm:justify-center items-center">
-                            <a wire:click="edit({{ $user->id }})" href="javascript:;" data-toggle="modal" data-target="#header-footer-modal-preview" class="flex items-center mr-3" href="">
+                            <a href="{{ route('detailNasabah', $user->id) }}" class="flex text-theme-1 items-center mr-3" href="">
+                                <i data-feather="file-text" class="w-4 h-4 mr-1"></i> Detail
+                            </a>
+                            <a wire:click="edit({{ $user->id }})" href="javascript:;" data-toggle="modal" data-target="#header-footer-modal-preview" class="flex items-center text-theme-9 mr-3" href="">
                                 <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
                             </a>
                             <a wire:click="delete_id({{ $user->id }})" class="flex items-center text-theme-6 delete-confirm" onclick="validateForm()" href="">

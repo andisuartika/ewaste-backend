@@ -40,11 +40,11 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         
         // NASABAH
         Route::get('/admin/nasabah', [NasabahController::class, 'index'])->name('nasabah');
-        Route::get('/admin/nasabah/detail/{id}', [NasabahController::class, 'index'])->name('detailNasabah');
+        Route::get('/admin/nasabah/detail/{id}', [NasabahController::class, 'show'])->name('detailNasabah');
 
         // PETUGAS
         Route::get('/admin/petugas', [PetugasController::class, 'index'])->name('petugas');
-        Route::get('/admin/petugas/detail/{id}', [PetugasController::class, 'index'])->name('detailPetugas');
+        Route::get('/admin/petugas/detail/{id}', [PetugasController::class, 'show'])->name('detailPetugas');
 
         // SAMPAH
         Route::get('/admin/sampah', [ControllersSampahController::class, 'index'])->name('sampah');

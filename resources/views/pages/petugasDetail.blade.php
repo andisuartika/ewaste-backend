@@ -1,16 +1,16 @@
 @extends('../layouts/side-menu')
 
 @section('subhead')
-    <title>Admin | E-Waste - Detail Nasabah</title>
+    <title>Admin | E-Waste - Detail Petugas</title>
 @endsection
 @section('pengguna', 'side-menu--active')
-@section('nasabah', 'side-menu--active')
-@section('title', 'Detail Nasabah')
+@section('petugas', 'side-menu--active')
+@section('title', 'Detail Petugas')
 
 @section('subcontent')
 <div class="intro-y flex items-center mt-8">
     <h2 class="text-lg font-medium mr-auto">
-        Detail Nasabah
+        Detail Petugas
     </h2>
 </div>
 <div class="grid grid-cols-12 gap-6">
@@ -22,8 +22,8 @@
                     <img alt="Foto Profile" class="rounded-full" src="{{ asset('dist/images/profile-1.jpg') }}">
                 </div>
                 <div class="ml-4 mr-auto">
-                    <div class="font-medium text-base">{{ $nasabah->name }}</div>
-                    <div class="text-gray-600">{{ $nasabah->email }}</div>
+                    <div class="font-medium text-base">{{ $petugas->name }}</div>
+                    <div class="text-gray-600">{{ $petugas->email }}</div>
                 </div>
                 
             </div>
@@ -31,10 +31,6 @@
                 <a class="flex items-center text-theme-1 font-medium" href=""> <i data-feather="user" class="w-4 h-4 mr-2"></i> Informasi Akun </a>
                 <a class="flex items-center mt-5" href=""> <i data-feather="box" class="w-4 h-4 mr-2"></i> Akun Settings </a>
                 <a class="flex items-center mt-5" href=""> <i data-feather="lock" class="w-4 h-4 mr-2"></i> Ganti Password </a>
-            </div>
-            <div class="p-5 border-t flex justify-between">
-                <input type="checkbox" class="input input--switch border" value="true" @if ($nasabah->roles == 'NASABAH') checked @endif disabled> 
-                <button type="button" class="button button--sm  @if ($nasabah->roles == 'NASABAH') bg-theme-1 text-white @else bg-gray-200 @endif" disabled>@if ($nasabah->roles == 'NASABAH') AKTIF @else NON AKTIF @endif</button>
             </div>
         </div>
     </div>
@@ -44,7 +40,7 @@
         <div class="intro-y box lg:mt-5">
             <div class="flex items-center p-5 border-b border-gray-200">
                 <h2 class="font-medium text-base mr-auto">
-                    Informasi Nasabah
+                    Informasi Petugas
                 </h2>
             </div>
             <div class="p-5">
@@ -55,29 +51,29 @@
                                 <img class="rounded-md" alt="Barcode" src="{{ asset('dist/images/profile-1.jpg') }}">
                             </div>
                             <div class="w-40 mx-auto cursor-pointer relative mt-5">
-                                <button type="button" class="button w-full bg-theme-1 text-white" disabled>Cetak QR-Code</button>
+                                <button type="button" class="button w-full bg-theme-1 text-white" disabled>Foto Petugas</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-span-12 xl:col-span-8">
                         <div>
                             <label>Nama</label>
-                            <input type="text" class="input w-full border bg-gray-100 cursor-not-allowed mt-2" placeholder="Input text" value="{{ $nasabah->name }}" disabled>
+                            <input type="text" class="input w-full border bg-gray-100 cursor-not-allowed mt-2" placeholder="Input text" value="{{ $petugas->name }}" disabled>
                         </div>
                         <div class="mt-3">
                             <label>Email</label>
-                            <input type="text" class="input w-full border mt-2" placeholder="Alamat Email" value="{{ $nasabah->email }}">
+                            <input type="text" class="input w-full border mt-2" placeholder="Alamat Email" value="{{ $petugas->email }}">
                         </div>
                         <div class="mt-3">
                             <label>Nomor Handphone</label>
-                            <input type="text" class="input w-full border mt-2" placeholder="Nomor Handphone" value="{{ $nasabah->noHp }}">
+                            <input type="text" class="input w-full border mt-2" placeholder="Nomor Handphone" value="{{ $petugas->noHp }}">
                         </div>
                         <div class="mt-3">
                             <label>Alamat</label>
-                            <textarea class="input w-full border mt-2" placeholder="Alamat">{{ $nasabah->alamat }}</textarea>
+                            <textarea class="input w-full border mt-2" placeholder="Alamat">{{ $petugas->alamat }}</textarea>
                         </div>
                         <div class="flex justify-end mt-4">
-                            <a href="#" class="text-theme-6 flex items-center"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Hapus Nasabah </a>
+                            <a href="#" class="text-theme-6 flex items-center"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Hapus Petugas </a>
                             <button type="button" class="button w-20 bg-theme-1 text-white ml-auto">Simpan</button>
                         </div>
                         

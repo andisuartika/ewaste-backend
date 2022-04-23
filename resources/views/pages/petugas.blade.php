@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
+            <div class="hidden md:block mx-auto text-gray-600">Menampilkan 1 sampai 10 dari {{ $petugasCount }} petugas</div>
             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-gray-700">
                     <input type="text" class="input w-56 box pr-10 placeholder-theme-13" placeholder="Search...">
@@ -37,527 +37,43 @@
             </div>
         </div>
         <!-- BEGIN: Users Layout -->
+        @foreach ($petugas as $user)
+        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
+            <div class="box">
+                <div class="flex items-start px-5 pt-5">
+                    <div class="w-full flex flex-col lg:flex-row items-center">
+                        <div class="w-16 h-16 image-fit">
+                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
+                        </div>
+                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
+                            <a href="" class="font-medium uppercase">{{ $user->name }}</a>
+                            <div class="text-gray-600 text-xs capitalize">{{ $user->roles }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center lg:text-left p-5">
+                    <div>{{ $user->alamat }}</div>
+                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
+                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>{{ $user->email }}
+                    </div>
+                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
+                        <i data-feather="phone" class="w-3 h-3 mr-2"></i>{{ $user->noHp }}
+                    </div>
+                </div>
+                <div class="text-center lg:text-right p-5 border-t border-gray-200 flex justify-end">
+                    <button class="button text-white flex items-center justify-center bg-theme-6 mr-2"><i data-feather="user-x" class="w-4 h-4 mr-2"></i>Hapus</button>
+                    <a href="{{ route('detailPetugas', $user->id) }}">
+                        <button class="button flex items-center justify-center bg-gray-200 text-gray-600 mr-2"><i data-feather="user" class="w-4 h-4 mr-2"></i>Detail</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        @endforeach
         
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
-            <div class="box">
-                <div class="flex items-start px-5 pt-5">
-                    <div class="w-full flex flex-col lg:flex-row items-center">
-                        <div class="w-16 h-16 image-fit">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-md" src="{{ asset('dist/images/profile-1.jpg') }}">
-                        </div>
-                        <div class="lg:ml-4 text-center lg:text-left mt-3 lg:mt-0">
-                            <a href="" class="font-medium">Andi Suartika</a>
-                            <div class="text-gray-600 text-xs">Programmer</div>
-                        </div>
-                    </div>
-                    <div class="absolute right-0 top-0 dropdown relative">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;">
-                            <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i>
-                        </a>
-                        <div class="dropdown-box mt-5 absolute w-40 top-0 right-0 z-20">
-                            <div class="dropdown-box__content box p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="edit-2" class="w-4 h-4 mr-2"></i> Edit
-                                </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-                                    <i data-feather="trash" class="w-4 h-4 mr-2"></i> Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center lg:text-left p-5">
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-5">
-                        <i data-feather="mail" class="w-3 h-3 mr-2"></i>Lorem ipsum
-                    </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600 mt-1">
-                        <i data-feather="instagram" class="w-3 h-3 mr-2"></i> Melsi
-                    </div>
-                </div>
-                <div class="text-center lg:text-right p-5 border-t border-gray-200">
-                    <button class="button button--sm text-white bg-theme-1 mr-2">Message</button>
-                    <button class="button button--sm text-gray-700 border border-gray-300">Profile</button>
-                </div>
-            </div>
-        </div>
-    
+        
         <!-- END: Users Layout -->
         <!-- BEGIN: Pagination -->
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-no-wrap items-center">
+        {{-- <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-no-wrap items-center">
             <ul class="pagination">
                 <li>
                     <a class="pagination__link" href="">
@@ -601,7 +117,7 @@
                 <option>35</option>
                 <option>50</option>
             </select>
-        </div>
+        </div> --}}
         <!-- END: Pagination -->
     </div>
 @endsection

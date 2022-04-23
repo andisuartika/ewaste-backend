@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NasabahController extends Controller
@@ -45,7 +46,9 @@ class NasabahController extends Controller
      */
     public function show($id)
     {
-        //
+        $nasabah = User::find($id);
+
+        return view('pages.nasabahDetail', compact('nasabah'));
     }
 
     /**
