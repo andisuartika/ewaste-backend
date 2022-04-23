@@ -1,8 +1,11 @@
-@extends('../layout/' . $layout)
+@extends('../layouts/side-menu')
 
 @section('subhead')
-    <title>Tentang Aplikasi - E-Waste Bali</title>
+    <title>Admin | E-Waste - Tentang Aplikasi</title>
 @endsection
+@section('tentang-aplikasi', 'side-menu--active')
+@section('tentang-aplikasi', 'side-menu--active')
+@section('title', 'Tentang Aplikasi')
 
 @section('subcontent')
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">

@@ -1,8 +1,10 @@
-@extends('../layout/' . $layout)
+@extends('../layouts/side-menu')
 
 @section('subhead')
-    <title>Users Layout - Midone - Laravel Admin Dashboard Starter Kit</title>
+    <title>Admin | E-Waste - Petugas</title>
 @endsection
+@section('pengguna', 'side-menu--active')
+@section('petugas', 'side-menu--active')
 
 @section('subcontent')
     <h2 class="intro-y text-lg font-medium mt-10">Petugas Sampah</h2>

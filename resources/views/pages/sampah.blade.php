@@ -1,8 +1,11 @@
-@extends('../layout/' . $layout)
+@extends('../layouts/side-menu')
 
 @section('subhead')
-    <title>Dashboard - Sampah</title>
+    <title>Admin | E-Waste - Sampah</title>
 @endsection
+@section('sampah', 'side-menu--active')
+
+@section('title', 'Sampah')
 
 @section('subcontent')
     <h2 class="intro-y text-lg font-medium mt-10">Data Sampah</h2>

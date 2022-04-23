@@ -1,8 +1,12 @@
-@extends('../layout/' . $layout)
+@extends('../layouts/side-menu')
 
 @section('subhead')
-    <title>FAQ - Midone - Laravel Admin Dashboard Starter Kit</title>
+    <title>Admin | E-Waste - Syarat & Ketentuan Aplikasi</title>
 @endsection
+
+@section('tentang-aplikasi', 'side-menu--active')
+@section('snk-aplikasi', 'side-menu--active')
+@section('title', 'Syarat & Ketentuan Aplikasi')
 
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">

@@ -13,6 +13,8 @@ class NasabahCreate extends Component
     public $password ;
     public $alamat ;
     public $noHp;
+    public $roles;
+    public bool $isActive = false;
     public $id_nasabah;
 
     protected $listeners = [
@@ -41,6 +43,13 @@ class NasabahCreate extends Component
             'noHp' => 'required',
         ]);
 
+        if($this->isActive){
+            $this->roles = 'NASABAH';
+        }else{
+            $this->roles = 'USER';
+        }
+
+        // dd($this->roles);
 
         $nasabah = User::updateOrCreate(['id' => $this->id_nasabah], [
             'name' => $this->name,
@@ -48,12 +57,18 @@ class NasabahCreate extends Component
             'password' => Hash::make($this->password),
             'alamat' => $this->alamat,
             'noHp' => $this->noHp,
+            'roles' => $this->roles,
         ]);
 
 
         $this->emit('nasabahStored', $nasabah);
         $this->dispatchBrowserEvent('closeModal');
-        $this->dispatchBrowserEvent('swal:modalSuccess');
+        if($this->id_nasabah == null){
+            $this->dispatchBrowserEvent('swal:modalCreate');
+        }else{
+            $this->dispatchBrowserEvent('swal:modalUpdate');
+        }
+
         $this->resetInput();
     }
 
@@ -69,6 +84,11 @@ class NasabahCreate extends Component
         $this->alamat = $nasabah['alamat'];
         $this->noHp = $nasabah['noHp'];
         $this->id_nasabah = $nasabah['id'];
+        if($nasabah['roles'] == 'USER') { 
+            $this->isActive = false;
+        }else{
+            $this->isActive = true;
+        }
 
     }
 
@@ -80,6 +100,6 @@ class NasabahCreate extends Component
         $this->email = null;
         $this->password = null;
         $this->alamat = null;
-        $this->nohp = null;
+        $this->noHp = null;
     }
 }

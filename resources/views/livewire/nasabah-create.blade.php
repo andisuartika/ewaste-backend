@@ -34,7 +34,7 @@
                             </div>
                             @if ($id_nasabah)                   
                             <div class="mt-3"> <label>Aktif</label>
-                                <div class="mt-2"> <input type="checkbox" class="input input--switch border" value="true"> </div>
+                                <div class="mt-2"> <input wire:model="isActive" type="checkbox" class="input input--switch border" value="true" @if ($isActive) checked @endif> </div>
                             </div>
                             @endif
                         </div>

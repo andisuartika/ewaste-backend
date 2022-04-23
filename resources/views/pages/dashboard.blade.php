@@ -1,8 +1,11 @@
-@extends('../layout/' . $layout)
+@extends('../layouts/side-menu')
 
 @section('subhead')
-    <title>Dashboard - Ewaste</title>
+    <title>Admin | E-Waste - Dashboard</title>
 @endsection
+
+@section('dashboard', 'side-menu--active')
+@section('title', 'Dashboard')
 
 @section('subcontent')
     <div class="grid grid-cols-12 gap-6">
@@ -184,45 +187,7 @@
                 </div>
             </div>
             <!-- END: Sales Report -->
-            <!-- BEGIN: Official Store -->
-            <div class="col-span-12 xl:col-span-8 mt-6">
-                <div class="intro-y block sm:flex items-center h-10">
-                    <h2 class="text-lg font-medium truncate mr-5">Official Store</h2>
-                    <div class="sm:ml-auto mt-3 sm:mt-0 relative text-gray-700">
-                        <i data-feather="map-pin" class="w-4 h-4 z-10 absolute my-auto inset-y-0 ml-3 left-0"></i>
-                        <input type="text" class="input w-full sm:w-40 box pl-10" placeholder="Filter by city">
-                    </div>
-                </div>
-                <div class="intro-y box p-5 mt-12 sm:mt-5">
-                    <div>250 Official stores in 21 countries, click the marker to see location details.</div>
-                    <div class="report-maps mt-5 bg-gray-200 rounded-md" data-center="-6.2425342, 106.8626478" data-sources="/dist/json/location.json"></div>
-                </div>
-            </div>
-            <!-- END: Official Store -->
-            <!-- BEGIN: Weekly Best Sellers -->
-            <div class="col-span-12 xl:col-span-4 mt-6">
-                <div class="intro-y flex items-center h-10">
-                    <h2 class="text-lg font-medium truncate mr-5">Weekly Best Sellers</h2>
-                </div>
-                <div class="mt-5">
-                    {{-- @foreach (array_slice($fakers, 0, 4) as $faker)
-                        <div class="intro-y">
-                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
-                                <div class="w-10 h-10 flex-none image-fit rounded-md overflow-hidden">
-                                    <img alt="Midone Laravel Admin Dashboard Starter Kit" src="{{ asset('dist/images/' . $faker['photos'][0]) }}">
-                                </div>
-                                <div class="ml-4 mr-auto">
-                                    <div class="font-medium">{{ $faker['users'][0]['name'] }}</div>
-                                    <div class="text-gray-600 text-xs">{{ $faker['dates'][0] }}</div>
-                                </div>
-                                <div class="py-1 px-2 rounded-full text-xs bg-theme-9 text-white cursor-pointer font-medium">137 Sales</div>
-                            </div>
-                        </div>
-                    @endforeach --}}
-                    <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-theme-15 text-theme-16">View More</a>
-                </div>
-            </div>
-            <!-- END: Weekly Best Sellers -->
+            
             <!-- BEGIN: General Report -->
             <div class="col-span-12 grid grid-cols-12 gap-6 mt-8">
                 <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">

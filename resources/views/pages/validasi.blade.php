@@ -1,8 +1,12 @@
-@extends('../layout/' . $layout)
+@extends('../layouts/side-menu')
 
 @section('subhead')
-    <title>Validasi - E-Waste Bali</title>
+    <title>Admin | E-Waste - Validasi Tabungan</title>
 @endsection
+
+@section('validasi-tabungan', 'side-menu--active')
+
+@section('title', 'Validasi Tabungan')
 
 @section('subcontent')
     <h2 class="intro-y text-lg font-medium mt-10">Data Transaksi</h2>

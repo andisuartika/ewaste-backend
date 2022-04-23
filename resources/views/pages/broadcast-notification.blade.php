@@ -1,8 +1,11 @@
-@extends('../layout/' . $layout)
+@extends('../layouts/side-menu')
 
 @section('subhead')
-    <title>Broadcast Notifikasi - Admin E-Waste Bali</title>
+    <title>Admin | E-Waste - Push Notification</title>
 @endsection
+@section('push-notifikasi', 'side-menu--active')
+
+@section('title', 'Push Notifikasi')
 
 @section('subcontent')
     <div class="grid grid-cols-12 gap-6 mt-8">
