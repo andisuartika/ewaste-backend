@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Perjalanan;
+use App\Models\Transaksi;
+use App\Models\TransaksiItems;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ValidasiTabunganController extends Controller
@@ -44,8 +48,16 @@ class ValidasiTabunganController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $perjalanan = Perjalanan::find($id);
+        $kode = $perjalanan->kode;
+        $transaksiMasuk = Transaksi::with(['items'])->where('id_perjalanan', $id)->where('jenisTransaksi', 'TRANSAKSI MASUK')->get();
+        $transaksiIurans = Transaksi::with(['items'])->where('id_perjalanan', $id)->where('jenisTransaksi', 'TRANSAKSI IURANS')->get();
+
+        $totalMasuk = Transaksi::where('id_perjalanan', $id)->where('jenisTransaksi', 'TRANSAKSI MASUK')->sum('total');
+        $totalIurans = Transaksi::where('id_perjalanan', $id)->where('jenisTransaksi', 'TRANSAKSI IURANS')->sum('total');
+        // echo($transaksiIurans); 
+        return view('pages.validasiDetail',compact(['perjalanan', 'kode','transaksiMasuk','transaksiIurans','totalMasuk', 'totalIurans']));
     }
 
     /**
@@ -68,7 +80,65 @@ class ValidasiTabunganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->ditangguhkan){
+
+            // JIKA TRANSAKSI DITANGGUHKAN
+
+            $perjalanan = Perjalanan::find($id);
+  
+            $perjalanan->status = $request->ditangguhkan;
+
+            $allTransaksi = Transaksi::where('id_perjalanan', $id)->get();
+
+            foreach($allTransaksi as $tr){
+
+                // UBAH STATUS TRANSAKSI
+                $tr->status = $request->ditangguhkan;
+                $tr->keterangan = $request->keterangan;
+
+                $tr->save();
+            }
+
+            // dd($transaksi);
+
+            $perjalanan->save();
+        }else{
+
+            // JIKA TRANSAKSI DITERIMA
+
+            $perjalanan = Perjalanan::find($id);
+  
+            $perjalanan->status = 'SELESAI';
+
+            $allTransaksi = Transaksi::where('id_perjalanan', $id)->get();
+
+            foreach($allTransaksi as $tr){
+
+                // UBAH STATUS TRANSAKSI
+                $tr->status = 'BERHASIL';
+                $tr->keterangan = 'BERHASIL DITAMBAHKAN';
+
+                $tr->save();
+                
+                if($tr->jenisTransaksi == "TRANSAKSI MASUK"){
+                    // TAMBAHKAN POIN PADA NASABAH
+                    $nasabah = User::find($tr->id_nasabah);
+                    $nasabah->points += $tr->total;
+                }elseif($tr->jenisTransaksi == "TRANSAKSI IURANS"){
+                    // TAMBAHKAN IURANS PADA NASABAH
+                    $nasabah = User::find($tr->id_nasabah);
+                    $nasabah->iurans += $tr->total;
+                }
+               
+                $nasabah->save();
+            }
+
+            // dd($transaksi);
+
+            $perjalanan->save();
+        }
+
+        return redirect(route('validasi-tabungan'));
     }
 
     /**

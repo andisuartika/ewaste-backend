@@ -1,26 +1,17 @@
 @extends('../layouts/side-menu')
 
 @section('subhead')
-    <title>Admin | E-Waste - Nasabah</title>
+    <title>Admin | E-Waste - Pembayaran Iurans</title>
 @endsection
-@section('pengguna', 'side-menu--active')
-@section('nasabah', 'side-menu--active')
-@section('title', 'Nasabah')
+@section('pembayaran-iurans', 'side-menu--active')
+@section('title', 'Pembayaran Iurans')
 
 @section('subcontent')
-    <h2 class="intro-y text-lg font-medium mt-10">Daftar Nasabah</h2>
-    <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
-            <a href="javascript:;" data-toggle="modal" data-target="#header-footer-modal-preview">
-            <button class="button text-white bg-theme-1 shadow-md mr-2">Tambah Nasabah</button>
-            </a>
-               @livewire('nasabah-create')
-        </div>   
-    </div>
+    <h2 class="intro-y text-lg font-medium mt-10">Daftar Iurans</h2>
 
-    {{-- LIVEWIRE NASABAH --}}
+    {{-- LIVEWIRE Pembayaran --}}
     <div class="z-0">
-        @livewire('nasabah-index')
+        @livewire('pembayaran-index')
     </div>
 
 @endsection

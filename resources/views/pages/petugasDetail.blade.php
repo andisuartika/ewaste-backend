@@ -56,27 +56,32 @@
                         </div>
                     </div>
                     <div class="col-span-12 xl:col-span-8">
+                        <form action="{{ route('updatePetugas',$petugas->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                        <input type="hidden" name="id" value="{{ $petugas->id }}">
                         <div>
                             <label>Nama</label>
-                            <input type="text" class="input w-full border bg-gray-100 cursor-not-allowed mt-2" placeholder="Input text" value="{{ $petugas->name }}" disabled>
+                            <input type="text" name="name" id="name" class="input w-full border mt-2" placeholder="Input text" value="{{ $petugas->name }}">
                         </div>
                         <div class="mt-3">
                             <label>Email</label>
-                            <input type="text" class="input w-full border mt-2" placeholder="Alamat Email" value="{{ $petugas->email }}">
+                            <input type="text" name="email" id="email" class="input w-full border mt-2" placeholder="Alamat Email" value="{{ $petugas->email }}">
                         </div>
                         <div class="mt-3">
                             <label>Nomor Handphone</label>
-                            <input type="text" class="input w-full border mt-2" placeholder="Nomor Handphone" value="{{ $petugas->noHp }}">
+                            <input type="text" name="noHp" id="noHp" class="input w-full border mt-2" placeholder="Nomor Handphone" value="{{ $petugas->noHp }}">
                         </div>
                         <div class="mt-3">
                             <label>Alamat</label>
-                            <textarea class="input w-full border mt-2" placeholder="Alamat">{{ $petugas->alamat }}</textarea>
+                            <textarea class="input w-full border mt-2" name="alamat" id="alamat" placeholder="Alamat">{{ $petugas->alamat }}</textarea>
                         </div>
                         <div class="flex justify-end mt-4">
-                            <a href="#" class="text-theme-6 flex items-center"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Hapus Petugas </a>
-                            <button type="button" class="button w-20 bg-theme-1 text-white ml-auto">Simpan</button>
+                            {{-- <a href="{{ route('deletePetugas',$petugas->id) }}" class="text-theme-6 flex items-center"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Hapus Petugas </a> --}}
+                            <button type="submit" name="submit" class="button w-20 bg-theme-1 text-white ml-auto">Simpan</button>
                         </div>
                         
+                    </form>
                     </div>
                 </div>
             </div>

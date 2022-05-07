@@ -24,9 +24,14 @@ class Transaksi extends Model
         'status',
     ];
 
-    public function users()
+    public function nasabah()
     {
-        return $this->belongsToMany(User::class, 'id_nasabah,id_petugas', 'id');
+        return $this->belongsTo(User::class, 'id_nasabah', 'id');
+    }
+
+    public function petugas()
+    {
+        return $this->belongsTo(User::class, 'id_petugas', 'id');
     }
 
     public function perjalanan()

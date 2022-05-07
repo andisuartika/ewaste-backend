@@ -22,14 +22,18 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
     <!-- END: CSS Assets-->
+    @method('styles')
 
     @livewireStyles
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!-- sweetalert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    @method('scripts')
 </head>
 <!-- END: Head -->
 
@@ -37,4 +41,5 @@ License: You must have a valid license purchased only from themeforest(the above
 
 @livewireScripts
 
+@yield('scripts')
 </html>

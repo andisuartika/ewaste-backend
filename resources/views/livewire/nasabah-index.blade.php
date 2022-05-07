@@ -21,7 +21,7 @@
                             </div>
                             <div class="ml-3">
                                 <div class="font-medium whitespace-no-wrap">{{ $user->name }}</div>
-                                <div class="text-gray-600 text-xs whitespace-no-wrap">`{{ $user->alamat }}</div>
+                                <div class="text-gray-600 text-xs whitespace-no-wrap">{{ $user->alamat }}</div>
                             </div>
                         </div>
                     </td>
@@ -42,16 +42,22 @@
                             </div>
                         @endif
                     </td>
-                    <td class="border-b w-5">
+                    <td class="border-b">
                         <div class="flex sm:justify-center items-center">
-                            <a href="{{ route('detailNasabah', $user->id) }}" class="flex text-theme-1 items-center mr-3" href="">
-                                <i data-feather="file-text" class="w-4 h-4 mr-1"></i> Detail
+                            <a href="{{ route('detailNasabah', $user->id) }}" class="tooltip flex text-theme-1 items-center mr-3" title="Detail Nasabah">
+                                <span wire:ignore>
+                                    <i data-feather="file-text" class="w-4 h-4 mr-1"></i>
+                                </span>
                             </a>
-                            <a wire:click="edit({{ $user->id }})" href="javascript:;" data-toggle="modal" data-target="#header-footer-modal-preview" class="flex items-center text-theme-9 mr-3" href="">
-                                <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
+                            <a wire:click="edit({{ $user->id }})" href="javascript:;" data-toggle="modal" data-target="#header-footer-modal-preview" class="tooltip flex text-theme-9 items-center mr-3" title="Edit Nasabah">
+                                <span wire:ignore>
+                                    <span wire:ignore><i data-feather="check-square" class="w-4 h-4 mr-1"></i></span>
+                                </span>
                             </a>
-                            <a wire:click="delete_id({{ $user->id }})" class="flex items-center text-theme-6 delete-confirm" onclick="validateForm()" href="">
-                                <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
+                            <a wire:click="delete_id({{ $user->id }})" class="tooltip flex text-theme-6 items-center mr-3 delete-confirm" onclick="validateForm()" title="Hapus Nasabah">
+                                <span wire:ignore>
+                                    <span wire:ignore><i data-feather="trash-2" class="w-4 h-4 mr-1"></i></span>
+                                </span>
                             </a>
                         </div>
                     </td>

@@ -6,12 +6,10 @@
         <meta charset="utf-8">
         <link href="dist/images/logo.svg" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
-        <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
-        <meta name="author" content="LEFT4CODE">
+        <meta name="description" content="E-Waste management system">
         <title>Oops. Kamu tidak mempunyai akses kesini!</title></title>
         <!-- BEGIN: CSS Assets-->
-        <link rel="stylesheet" href="dist/css/app.css" />
+        <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
@@ -20,7 +18,7 @@
             <!-- BEGIN: Error Page -->
             <div class="error-page flex flex-col lg:flex-row items-center justify-center h-screen text-center lg:text-left">
                 <div class="-intro-x lg:mr-20">
-                    <img alt="Midone Tailwind HTML Admin Template" class="h-48 lg:h-auto" src="dist/images/error-illustration.svg">
+                    <img alt="Error-page-403" class="h-48 lg:h-auto" src="{{ asset('dist/images/error-illustration.svg') }}">
                 </div>
                 <div class="text-white mt-10 lg:mt-0">
                     <div class="intro-x text-6xl font-medium">403</div>

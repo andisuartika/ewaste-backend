@@ -11,7 +11,7 @@ class NasabahIndex extends Component
     public $delete_id;
 
     protected $listeners = [
-        'nasabahStored' => 'handleStored'
+        'nasabahStored' => 'handleStored',
     ];
 
     public function render()
@@ -36,10 +36,12 @@ class NasabahIndex extends Component
     {
         User::find($this->delete_id)->delete();
         $this->dispatchBrowserEvent('swal:modalDelete');
+        return redirect(route('nasabah'));
     }
 
     public function handleStored($nasabah)
     {
         
     }
+
 }

@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Hash;
 class NasabahCreate extends Component
 {
     public $name;
-    public $email ;
-    public $password ;
-    public $alamat ;
+    public $email;
+    public $password;
+    public $alamat;
     public $noHp;
     public $roles;
     public bool $isActive = false;
@@ -51,15 +51,26 @@ class NasabahCreate extends Component
 
         // dd($this->roles);
 
-        $nasabah = User::updateOrCreate(['id' => $this->id_nasabah], [
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => Hash::make($this->password),
-            'alamat' => $this->alamat,
-            'noHp' => $this->noHp,
-            'roles' => $this->roles,
-        ]);
 
+
+        if($this->id_nasabah == null){
+            $nasabah = User::create([
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => Hash::make($this->password),
+                'alamat' => $this->alamat,
+                'noHp' => $this->noHp,
+                'roles' => $this->roles,
+            ]);
+        }else{
+            $nasabah = User::updateOrCreate(['id' => $this->id_nasabah], [
+                'name' => $this->name,
+                'email' => $this->email,
+                'alamat' => $this->alamat,
+                'noHp' => $this->noHp,
+                'roles' => $this->roles,
+            ]);
+        }
 
         $this->emit('nasabahStored', $nasabah);
         $this->dispatchBrowserEvent('closeModal');
@@ -70,6 +81,7 @@ class NasabahCreate extends Component
         }
 
         $this->resetInput();
+        return redirect(route('nasabah'));
     }
 
     public function render()

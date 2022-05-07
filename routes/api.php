@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\SampahController;
 use App\Http\Controllers\API\TransaksiController;
+use App\Http\Controllers\API\TransaksiPoin;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Perjalanan
     Route::get('/perjalanan', [PerjalananController::class, 'all']);
     Route::post('/perjalanan', [PerjalananController::class, 'createPerjalanan']);
+
+    Route::post('/transaksi/poin', [TransaksiPoin::class, 'store']);
 });
 
 Route::get('sampah', [SampahController::class, 'all']);

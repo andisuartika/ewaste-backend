@@ -42,7 +42,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="@yield('sampah')" class="side-menu @yield('sampah')">
+                    <a href="{{ route('sampah') }}" class="side-menu @yield('sampah')">
                         <div class="side-menu__icon"> <i data-feather="trash-2"></i> </div>
                         <div class="side-menu__title"> Sampah </div>
                     </a>
@@ -56,12 +56,18 @@
                 <li>
                     <a href="{{ route('validasi-tabungan') }}" class="side-menu @yield('validasi-tabungan')">
                         <div class="side-menu__icon"> <i data-feather="check-circle"></i> </div>
-                        <div class="side-menu__title"> Validasi Tabungab </div>
+                        <div class="side-menu__title"> Validasi Transaksi </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('pembayaran-iurans') }}" class="side-menu @yield('pembayaran-iurans')">
+                        <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
+                        <div class="side-menu__title"> Pembayaran Iuran </div>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('penarikan-saldo') }}" class="side-menu @yield('penarikan-saldo')">
-                        <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
+                        <div class="side-menu__icon"> <i data-feather="award"></i> </div>
                         <div class="side-menu__title"> Penarikan Saldo </div>
                     </a>
                 </li>

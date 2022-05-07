@@ -14,11 +14,22 @@ class Sampah extends Model
 
     protected $fillable = [
         'nama',
+        'tentang',
+        'pengelolaan',
         'harga',
+        'kategori',
+        'image',
+        'icon',
+        'status',
     ];
 
     public function items()
     {
         return $this->hasMany(TransaksiItems::class, 'sampah', 'id');
+    }
+
+    public function kategori()
+    {
+        return $this->hasOne(KategoriSampah::class, 'id', 'kategori');
     }
 }

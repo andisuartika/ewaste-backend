@@ -22,7 +22,7 @@ class TransaksiController extends Controller
         $roles = Auth::user()->roles;
 
         if ($id) {
-            $transaksi = Transaksi::with(['items.product'])->find($id);
+            $transaksi = Transaksi::with(['items.sampah'])->find($id);
 
             if ($transaksi) {
                 return ResponseFormatter::success(
@@ -65,10 +65,10 @@ class TransaksiController extends Controller
         $request->validate([
             'id_nasabah' =>  'exists:users,id',
             // 'id_perjalanan' =>  'exists:perjalanan,id',
-            'items' => 'required|array',
+            // 'items' => 'required|array',
             'items.*.sampah' => 'exists:sampah,id',
             'total' => 'required',
-            'jenisTransaksi' => 'required|in:TRANSAKSI MASUK, TRANSAKSI KELUAR',
+            'jenisTransaksi' => 'required',
             'status' => 'required|in:PENDING,SUCCESS,CANCELLED,FAILED,PROCESS',
         ]);
 
@@ -84,14 +84,16 @@ class TransaksiController extends Controller
                 'status' => $request->status,
             ]);
 
-            foreach ($request->items as $sampah) {
-                TransaksiItems::create([
-                    'id_nasabah' => $request->id_nasabah,
-                    'sampah' => $sampah['sampah'],
-                    'id_transaksi' => $transaksi->id,
-                    'kuantitas' => $sampah['kuantitas']
-                ]);
-            }
+            if($request->items){
+                foreach ($request->items as $sampah) {
+                    TransaksiItems::create([
+                        'id_nasabah' => $request->id_nasabah,
+                        'sampah' => $sampah['sampah'],
+                        'id_transaksi' => $transaksi->id,
+                        'kuantitas' => $sampah['kuantitas']
+                    ]);
+                }
+            }           
 
             return ResponseFormatter::success($transaksi->load('items.sampah'), 'Transaksi berhasil');
         }

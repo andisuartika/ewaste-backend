@@ -3208,7 +3208,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 
 .select2-container--classic.select2-container--open .select2-dropdown {
-  border-color: #5897fb;
+  border-color: #064E3B;
 }
 
 /*
@@ -37033,8 +37033,8 @@ video {
 .select2-container.select2-container--default .select2-selection--multiple {
   height: 39px;
   --border-opacity: 1;
-  border-color: #e2e8f0;
-  border-color: rgba(226, 232, 240, var(--border-opacity));
+  border-color: #064E3B;
+  border-color: rgba(6, 78, 59, var(--bg-opacity));
 }
 
 .select2-container.select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -37063,8 +37063,8 @@ video {
 
 .select2-container.select2-container--default .select2-search--dropdown .select2-search__field {
   --border-opacity: 1;
-  border-color: #e2e8f0;
-  border-color: rgba(226, 232, 240, var(--border-opacity));
+  border-color: #064E3B;
+  border-color: rgba(6, 78, 59, var(--bg-opacity));
 }
 
 .select2-container.select2-container--default .select2-results__option {

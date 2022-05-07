@@ -38,29 +38,43 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
             return view('pages.dashboard');
         })->name('dashboard');
         
+        
         // NASABAH
         Route::get('/admin/nasabah', [NasabahController::class, 'index'])->name('nasabah');
         Route::get('/admin/nasabah/detail/{id}', [NasabahController::class, 'show'])->name('detailNasabah');
 
         // PETUGAS
         Route::get('/admin/petugas', [PetugasController::class, 'index'])->name('petugas');
+        Route::put('/admin/petugas/{id}', [PetugasController::class, 'update'])->name('updatePetugas');
         Route::get('/admin/petugas/detail/{id}', [PetugasController::class, 'show'])->name('detailPetugas');
 
         // SAMPAH
         Route::get('/admin/sampah', [ControllersSampahController::class, 'index'])->name('sampah');
-        Route::get('/admin/sampah/detail/{id}', [ControllersSampahController::class, 'index'])->name('detailSampah');
+        Route::get('/admin/sampah/create', [ControllersSampahController::class, 'create'])->name('createSampah');
+        Route::get('/admin/sampah/{id}/edit', [ControllersSampahController::class, 'edit'])->name('editSampah');
+        Route::put('/admin/sampah/update/{id}', [ControllersSampahController::class, 'update'])->name('updateSampah');
+        Route::post('/admin/sampah/store', [ControllersSampahController::class, 'store'])->name('storeSampah');
+        Route::post('/admin/sampah/store/image', [ControllersSampahController::class, 'storeImage'])->name('storeImageSampah');
+        Route::get('/admin/sampah/detail/{id}', [ControllersSampahController::class, 'show'])->name('detailSampah');
 
         // TUGAS PERJALANAN
         Route::get('/admin/tugas-perjalanan', [TugasPerjalananController::class, 'index'])->name('tugas-perjalanan');
-        Route::get('/admin/tugas-perjalanan/detail/{id}', [TugasPerjalananController::class, 'index'])->name('detailTugas');
+        Route::get('/admin/tugas-perjalanan/detail/{id}', [TugasPerjalananController::class, 'show'])->name('detailTugas');
 
         // VALIDASI TABUNGAN
         Route::get('/admin/validasi-tabungan', [ValidasiTabunganController::class, 'index'])->name('validasi-tabungan');
-        Route::get('/admin/validasi-tabungan/detail/{id}', [ValidasiTabunganController::class, 'index'])->name('detailValidasi');
+        Route::get('/admin/validasi-tabungan/detail/{id}', [ValidasiTabunganController::class, 'show'])->name('detailValidasi');
+        Route::put('/admin/validasi-tabungan/update/{id}', [ValidasiTabunganController::class, 'update'])->name('updateValidasi');
+
+        // PEMBAYARAN IURANS
+        Route::get('/admin/pembayaran-iurans', function () {
+            return view('pages.pembayaranIurans');
+        })->name('pembayaran-iurans');
+        Route::put('/admin/pembayaran-iurans/store/{id}', [NasabahController::class, 'pembayaranStore'])->name('pembayaranStore');
 
         // PENARIKAN SALDO
         Route::get('/admin/penarikan-saldo', [PenarikanController::class, 'index'])->name('penarikan-saldo');
-        Route::get('/admin/penarikan-saldo/detail/{id}', [PenarikanController::class, 'index'])->name('detailPenarikan-saldo');
+        Route::put('/admin/penarikan-saldo/store/{id}', [PenarikanController::class, 'update'])->name('poinStore');
 
         // GRAPIK LAPORAN
         Route::get('/admin/grapik-laporan', [GrapikController::class, 'index'])->name('grapik-laporan');

@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Helpers\ResponseFormatter;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\TransaksiPoin as ModelsTransaksiPoin;
 
-class PetugasController extends Controller
+class TransaksiPoin extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +18,7 @@ class PetugasController extends Controller
      */
     public function index()
     {
-
-        return view('pages.petugas');
+        //
     }
 
     /**
@@ -36,7 +39,34 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
-        dd('ok');
+        $request->validate([
+            'bank' =>  'exists:banks,id',
+            'nomor' => 'required',
+            'nama' => 'required',
+            'jumlah' => 'required',
+        ]);
+
+        $id = Auth::user()->id;
+        $user = User::find($id);
+
+        if($user->points > $request->jumlah){
+            $poin = ModelsTransaksiPoin::create([
+                'id_user' => $id,
+                'bank' => $request->bank,
+                'nomor' => $request->nomor,
+                'nama' => $request->nama,
+                'jumlah' => $request->jumlah,
+            ]);
+            return ResponseFormatter::success($poin, 'Transaksi berhasil');
+        } 
+
+        return ResponseFormatter::error(
+            null,
+            'Points Tidak Cukup!',
+            404
+        );
+
+        
     }
 
     /**
@@ -47,8 +77,7 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
-        $petugas = User::find($id);
-        return view('pages.petugasDetail', compact('petugas'));
+        //
     }
 
     /**
@@ -71,24 +100,7 @@ class PetugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'noHp' => 'required',
-            'alamat' => 'required'
-        ]);
-
-        $user = User::find($id);
-
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'noHp' => $request->noHp,
-            'alamat' => $request->alamat,
-        ]); 
-
-        return redirect(route('detailPetugas', $id));
-        
+        //
     }
 
     /**

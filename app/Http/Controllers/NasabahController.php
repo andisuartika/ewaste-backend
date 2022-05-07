@@ -74,6 +74,22 @@ class NasabahController extends Controller
         //
     }
 
+
+    public function pembayaranStore(Request $request, $id)
+    {
+        $request->validate([
+            'jumlah' => ['required'],
+        ]);
+
+
+        $user = User::find($id);
+        $user->iurans -= $request->jumlah;
+        
+        $user->save();
+        
+        return redirect(route('pembayaran-iurans'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

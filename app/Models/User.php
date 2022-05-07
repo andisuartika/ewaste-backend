@@ -78,4 +78,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Perjalanan::class, 'id_petugas', 'id');
     }
+
+    public function transaksiPoin()
+    {
+        return $this->hasMany(TransaksiPoin::class, 'id_user', 'id');
+    }
 }

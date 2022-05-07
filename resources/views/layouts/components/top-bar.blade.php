@@ -105,7 +105,7 @@
                     <div class="text-xs text-white">Software Developer</div>
                 </div>
                 <div class="p-2">
-                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md">
+                    <a href="{{ route('profile.show') }}" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md">
                         <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile
                     </a>
                     <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md">
@@ -116,9 +116,14 @@
                     </a>
                 </div>
                 <div class="p-2 border-t border-theme-40">
-                    <a href="{{ route('logout') }}" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md">
-                        <i data-feather="log-out" class="w-4 h-4 mr-2"></i> Logout
-                    </a>
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <a href="{{ route('logout') }}" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md" @click.prevent="$root.submit();">
+                            <i data-feather="log-out" class="w-4 h-4 mr-2"></i> Logout
+                        </a>
+                    </form>
+                    
                 </div>
             </div>
         </div>
