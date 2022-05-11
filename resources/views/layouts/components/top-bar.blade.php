@@ -65,44 +65,17 @@
         </div>
     </div> --}}
     <!-- END: Search -->
-    <!-- BEGIN: Notifications -->
-    <div class="intro-x dropdown relative mr-auto sm:mr-6">
-        <div class="dropdown-toggle notification notification--bullet cursor-pointer">
-            <i data-feather="bell" class="notification__icon"></i>
-        </div>
-        <div class="notification-content dropdown-box mt-8 absolute top-0 left-0 sm:left-auto sm:right-0 z-20 -ml-10 sm:ml-0">
-            <div class="notification-content__box dropdown-box__content box">
-                <div class="notification-content__title">Notifications</div>
-                {{-- @foreach (array_slice($fakers, 0, 5) as $key => $faker)
-                    <div class="cursor-pointer relative flex items-center {{ $key ? 'mt-5' : '' }}">
-                        <div class="w-12 h-12 flex-none image-fit mr-1">
-                            <img alt="Midone Laravel Admin Dashboard Starter Kit" class="rounded-full" src="{{ asset('dist/images/' . $faker['photos'][0]) }}">
-                            <div class="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
-                        </div>
-                        <div class="ml-2 overflow-hidden">
-                            <div class="flex items-center">
-                                <a href="javascript:;" class="font-medium truncate mr-5">{{ $faker['users'][0]['name'] }}</a>
-                                <div class="text-xs text-gray-500 ml-auto whitespace-no-wrap">{{ $faker['times'][0] }}</div>
-                            </div>
-                            <div class="w-full truncate text-gray-600">{{ $faker['news'][0]['short_content'] }}</div>
-                        </div>
-                    </div>
-                @endforeach --}}
-            </div>
-        </div>
-    </div>
-    <!-- END: Notifications -->
     <!-- BEGIN: Account Menu -->
     <div class="intro-x dropdown w-8 h-8 relative">
         <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in">
-            {{-- <img alt="Midone Laravel Admin Dashboard Starter Kit" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}"> --}}
+            <img alt="Profile Picture" src="{{ asset('dist/images/profile-1.jpg')}}">
         </div>
         <div class="dropdown-box mt-10 absolute w-56 top-0 right-0 z-20">
             <div class="dropdown-box__content box bg-theme-3 text-white">
                 <div class="p-4 border-b border-theme-40">
                     {{-- <div class="font-medium">{{ $loggedin_user->name }}</div> --}}
-                    <div class="font-medium">andisuartika</div>
-                    <div class="text-xs text-white">Software Developer</div>
+                    <div class="font-medium">{{ Auth::user()->name }}</div>
+                    <div class="text-xs text-white">{{ Auth::user()->email }}</div>
                 </div>
                 <div class="p-2">
                     <a href="{{ route('profile.show') }}" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md">

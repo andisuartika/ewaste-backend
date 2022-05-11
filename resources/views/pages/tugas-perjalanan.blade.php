@@ -10,5 +10,5 @@
 @section('subcontent')
     <h2 class="intro-y text-lg font-medium mt-10 mb-3">Tugas Perjalanan</h2>
     @livewire('perjalanan-index')
-    </div> --}}
+    </div> 
 @endsection

@@ -250,7 +250,7 @@
     });
     </script>
 
-    <script>
+<script>
         window.addEventListener('closeModal', event =>{
             $('#header-footer-modal-preview').modal('hide');
         });

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\SampahController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GrapikController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\PageController;
@@ -34,9 +35,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth:sanctum'], function() {
 
     Route::group(['middleware' => 'accessrole:ADMIN'], function() {
-        Route::get('/admin/dashboard', function () {
-            return view('pages.dashboard');
-        })->name('dashboard');
+        Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         
         
         // NASABAH
@@ -99,19 +98,23 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::group(['middleware' => 'accessrole:ADMIN'], function() {
         // TENTANG APLIKASI
         Route::get('/admin/tentang-aplikasi', [TentangAplikasiController::class, 'index'])->name('tentang-aplikasi');
-        Route::get('/admin/tentang-aplikasi/detail/{id}', [TentangAplikasiController::class, 'index'])->name('detailTentang-aplikasi-detail');
+        Route::post('/admin/tentang-aplikasi/store', [TentangAplikasiController::class, 'tentangStore'])->name('storeTentang');
+        Route::put('/admin/tentang-aplikasi/update/{id}', [TentangAplikasiController::class, 'tentangUpdate'])->name('updateTentang');
 
         // PANDUAN APLIKASI
         Route::get('/admin/panduan-aplikasi', [TentangAplikasiController::class, 'panduanIndex'])->name('panduan-aplikasi');
-        Route::get('/admin/panduan-aplikasi/detail/{id}', [TentangAplikasiController::class, 'panduanIndex'])->name('detailPanduan-aplikasi-detail');
+        Route::post('/admin/panduan-aplikasi/store', [TentangAplikasiController::class, 'panduanStore'])->name('storePanduan');
+        Route::put('/admin/panduan-aplikasi/update/{id}', [TentangAplikasiController::class, 'panduanUpdate'])->name('updatePanduan');
 
         // SNK APLIKASI
         Route::get('/admin/snk-aplikasi', [TentangAplikasiController::class, 'snkIndex'])->name('snk-aplikasi');
-        Route::get('/admin/snk-aplikasi/detail/{id}', [TentangAplikasiController::class, 'snkIndex'])->name('detailTSnk-aplikasi-detail');
+        Route::post('/admin/snk-aplikasi/store', [TentangAplikasiController::class, 'syaratStore'])->name('storeSyarat');
+        Route::put('/admin/snk-aplikasi/update/{id}', [TentangAplikasiController::class, 'syaratUpdate'])->name('updateSyarat');
 
         // KONTAK APLIKASI
         Route::get('/admin/kontak', [TentangAplikasiController::class, 'kontakIndex'])->name('kontak');
-        Route::get('/admin/kontak/detail/{id}', [TentangAplikasiController::class, 'kontakIndex'])->name('detailKontak-detail');
+        Route::post('/admin/kontak/store', [TentangAplikasiController::class, 'kontakStore'])->name('storeKontak');
+        Route::put('/admin/kontak/update/{id}', [TentangAplikasiController::class, 'kontakUpdate'])->name('updateKontak');
     });
     
     

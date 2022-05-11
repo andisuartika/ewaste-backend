@@ -9,120 +9,58 @@
 @section('title', 'Syarat & Ketentuan Aplikasi')
 
 @section('subcontent')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">FAQ Layout</h2>
+
+    <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+        <h2 class="text-lg font-medium mr-auto">Syarat dan Ketentuan Aplikasi</h2>
     </div>
-    <div class="grid grid-cols-12 gap-6 mt-5">
-        <!-- BEGIN: FAQ Menu -->
-        <a href="" class="intro-y col-span-12 lg:col-span-4 box py-10 border-2 border-theme-1">
-            <i data-feather="shield" class="w-12 h-12 text-theme-1 mx-auto"></i>
-            <div class="font-medium text-center text-base mt-3">Single Application</div>
-            <div class="text-gray-600 mt-2 w-3/4 text-center mx-auto">Lorem Ipsum is simply dummy text of the printing</div>
-        </a>
-        <a href="" class="intro-y col-span-12 lg:col-span-4 box py-10">
-            <i data-feather="send" class="w-12 h-12 text-theme-1 mx-auto"></i>
-            <div class="font-medium text-center text-base mt-3">Multi Application</div>
-            <div class="text-gray-600 mt-2 w-3/4 text-center mx-auto">Lorem Ipsum is simply dummy text of the printing</div>
-        </a>
-        <a href="" class="intro-y col-span-12 lg:col-span-4 box py-10">
-            <i data-feather="trending-up" class="w-12 h-12 text-theme-1 mx-auto"></i>
-            <div class="font-medium text-center text-base mt-3">Custom License</div>
-            <div class="text-gray-600 mt-2 w-3/4 text-center mx-auto">Lorem Ipsum is simply dummy text of the printing</div>
-        </a>
-        <!-- END: FAQ Menu -->
-        <!-- BEGIN: FAQ Content -->
-        <div class="intro-y col-span-12 lg:col-span-6 box">
-            <div class="flex items-center p-5 border-b border-gray-200">
-                <h2 class="font-medium text-base mr-auto">Working with Dropplets</h2>
-            </div>
-            <div class="accordion px-5 py-1">
-                <div class="accordion__pane active border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">OpenSSL Essentials: Working with SSL Certificates, Private Keys</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">Understanding IP Addresses, Subnets, and CIDR Notation</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">How To Troubleshoot Common HTTP Error Codes</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">An Introduction to Securing your Linux VPS</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
+    <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+        <!-- BEGIN: Post Content -->
+        <div class="intro-y col-span-12 lg:col-span-8">
+            <div class="post intro-y overflow-hidden box">
+                <div class="post__content tab-content">
+                    <div class="tab-content__pane p-5 active" id="content">
+                        <div class="border border-gray-200 rounded-md p-5">
+                            <form action="{{ (isset($syarat)) ? route('updateSyarat', $syarat->id) : route('storeSyarat') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @if(isset($syarat)) 
+                                    @method('PUT')
+                                @else 
+                                    @method('POST')
+                                @endif
+                                <div class="font-medium flex items-center border-b border-gray-200 pb-5">
+                                    Syarat dan Ketentuan Aplikasi
+                                </div>
+                                <input type="hidden" name="id" id="id" value="@if(isset($syarat)) {{ $syarat->id }} @endif">
+                                <div class="mt-5">
+                                    <textarea name="syarat" id="syarat" data-feature="all" class="summernote" data-height="250" >@if(isset($syarat)){{ $syarat->deskripsi }}@endif</textarea>
+                                </div>
+                                <div class="w-full sm:w-auto justify-end flex mt-10">
+                                    <button type="submit" class="button box text-white bg-theme-1 flex items-center ml-auto sm:ml-0">
+                                        <i class="w-4 h-4 mr-2" data-feather="save"></i> Simpan
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="intro-y col-span-12 lg:col-span-6 box">
-            <div class="flex items-center p-5 border-b border-gray-200">
-                <h2 class="font-medium text-base mr-auto">Working with Dropplets</h2>
-            </div>
-            <div class="accordion px-5 py-1">
-                <div class="accordion__pane active border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">OpenSSL Essentials: Working with SSL Certificates, Private Keys</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
+        <!-- END: Post Content -->
+        <!-- BEGIN: Post Info -->
+        <div class="col-span-12 lg:col-span-4">
+            <div class="intro-y box p-5">
+                <div>
+                    <label>Syarat dan Ketentuan Aplikasi E-WASTE</label>
                 </div>
-                <div class="accordion__pane border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">Understanding IP Addresses, Subnets, and CIDR Notation</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">How To Troubleshoot Common HTTP Error Codes</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">An Introduction to Securing your Linux VPS</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
+                <div class="mt-3">
+                    <div class="accordion__pane active border border-gray-200 p-4"> <a href="javascript:;" class="accordion__pane__toggle font-medium block">
+                        @if(isset($syarat)){!! $syarat->deskripsi !!}@endif
+                        
+                        
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="intro-y col-span-12 lg:col-span-6 box">
-            <div class="flex items-center p-5 border-b border-gray-200">
-                <h2 class="font-medium text-base mr-auto">Working with Dropplets</h2>
-            </div>
-            <div class="accordion px-5 py-1">
-                <div class="accordion__pane active border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">OpenSSL Essentials: Working with SSL Certificates, Private Keys</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">Understanding IP Addresses, Subnets, and CIDR Notation</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">How To Troubleshoot Common HTTP Error Codes</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">An Introduction to Securing your Linux VPS</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-            </div>
-        </div>
-        <div class="intro-y col-span-12 lg:col-span-6 box">
-            <div class="flex items-center p-5 border-b border-gray-200">
-                <h2 class="font-medium text-base mr-auto">Working with Dropplets</h2>
-            </div>
-            <div class="accordion px-5 py-1">
-                <div class="accordion__pane active border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">OpenSSL Essentials: Working with SSL Certificates, Private Keys</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">Understanding IP Addresses, Subnets, and CIDR Notation</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane border-b border-gray-200 py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">How To Troubleshoot Common HTTP Error Codes</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-                <div class="accordion__pane py-4">
-                    <a href="javascript:;" class="accordion__pane__toggle font-medium block">An Introduction to Securing your Linux VPS</a>
-                    <div class="accordion__pane__content mt-3 text-gray-700 leading-relaxed">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
-                </div>
-            </div>
-        </div>
-        <!-- END: FAQ Content -->
+        <!-- END: Post Info -->
     </div>
 @endsection
