@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\Request;
+use App\Models\TemporaryFile;
 
 class BannerController extends Controller
 {
@@ -23,7 +25,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.banner-form');
     }
 
     /**
@@ -34,8 +36,57 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message=[
+            'required'=> 'Field tidak boleh kosong',
+        ];
+        
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'deskripsi' => ['required'],
+            'link' => ['required'],
+            'gambar' => 'required|max:10240'
+        ],$message);
+
+        $temporaryFile = TemporaryFile::where('folder', $request->gambar)->first();
+
+        $gambar = $temporaryFile->folder.$temporaryFile->filename;
+
+        $sampah = Banner::create([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'link' => $request->link,
+            'gambar' => $gambar,
+        ]);
+
+        if($temporaryFile){
+            // $validasi->addMedia(storage_path('app/public/files/tmp/' . $request->file . '/' . $temporaryFile->filename))->toMediaCollection('files');
+            // rmdir(storage_path('app/public/files/tmp/' . $request->file));
+            $temporaryFile->delete();
+        }
+
+        
+        
+        return redirect()->route('banner');
     }
+
+    public function storeImage(Request $request)
+    {
+        if($request->hasFile('gambar')){
+            $file = $request->file('gambar');
+            $filename = $file->getClientOriginalName();
+            $folder = 'banner/';
+            $file->storeAs('banner/' , $filename);
+
+            TemporaryFile::create([
+                'folder' => $folder,
+                'filename' => $filename
+            ]);
+
+            return $folder;
+        }
+
+        return '';
+    } 
 
     /**
      * Display the specified resource.
@@ -56,7 +107,9 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $banner = Banner::find($id);
+
+        return view('pages.banner-form',compact('banner'));
     }
 
     /**
@@ -68,7 +121,43 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'deskripsi' => ['required'],
+            'link' => ['required'],
+        ]);
+
+        $banner = Banner::find($id);
+
+        if($request->gambar){
+            $temporaryFile = TemporaryFile::where('folder', $request->gambar)->first();
+            $gambar = $temporaryFile->folder.$temporaryFile->filename;
+        }else{
+            $gambar = $banner->gambar;
+        }
+
+
+        
+        $banner->nama = $request->nama;
+        $banner->deskripsi = $request->deskripsi;
+        $banner->link = $request->link;
+        $banner->gambar = $gambar;
+
+        $banner->update();
+        
+        if($request->gambar)
+        {
+            if($temporaryFile){
+                // $validasi->addMedia(storage_path('app/public/files/tmp/' . $request->file . '/' . $temporaryFile->filename))->toMediaCollection('files');
+                // rmdir(storage_path('app/public/files/tmp/' . $request->file));
+                $temporaryFile->delete();
+            }
+        }
+        
+
+        
+        
+        return redirect()->route('banner');
     }
 
     /**

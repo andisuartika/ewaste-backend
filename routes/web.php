@@ -86,7 +86,12 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
         // BANNER
         Route::get('/admin/banner', [BannerController::class, 'index'])->name('banner');
+        Route::get('/admin/banner/create', [BannerController::class, 'create'])->name('createBanner');
         Route::get('/admin/banner/detail/{id}', [BannerController::class, 'index'])->name('detailBanner');
+        Route::post('/admin/banner/store', [BannerController::class, 'store'])->name('storeBanner');
+        Route::post('/admin/banner/store/image', [BannerController::class, 'storeImage'])->name('storeImageBanner');
+        Route::get('/admin/banner/{id}/edit', [BannerController::class, 'edit'])->name('editBanner');
+        Route::put('/admin/banner/update/{id}', [BannerController::class, 'update'])->name('updateBanner');
     });
     // Route::get('/', [PageController::class, 'loadPage'])->name('dashboard');
     // Route::get('page/{layout}/{pageName}', [PageController::class, 'loadPage'])->name('page');
