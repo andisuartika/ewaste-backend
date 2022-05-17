@@ -1,4 +1,4 @@
-<p align="center"><a href="https://wastebali.com" target="_blank"><img src="http://ewaste.test/img/e-waste.png" width="400"></a></p>
+<p align="center"><a href="https://wastebali.com" target="_blank"><img src="https://wastebali.com/img/e-waste.png" width="400"></a></p>
 
 <p align="center">
 <a href="https://wastebali.com">Build Project E-Waste Bali</a>
