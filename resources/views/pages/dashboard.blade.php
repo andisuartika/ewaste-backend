@@ -85,7 +85,7 @@
             <!-- BEGIN: Sales Report -->
             <div class="col-span-12 lg:col-span-6 mt-8">
                 <div class="intro-y block sm:flex items-center h-10">
-                    <h2 class="text-lg font-medium truncate mr-5">Sales Report</h2>
+                    <h2 class="text-lg font-medium truncate mr-5">Laporan Transaksi</h2>
                     <div class="sm:ml-auto mt-3 sm:mt-0 relative text-gray-700">
                         <i data-feather="calendar" class="w-4 h-4 z-10 absolute my-auto inset-y-0 ml-3 left-0"></i>
                         <input type="text" data-daterange="true" class="datepicker input w-full sm:w-56 box pl-10">
@@ -95,98 +95,43 @@
                     <div class="flex flex-col xl:flex-row xl:items-center">
                         <div class="flex">
                             <div>
-                                <div class="text-theme-20 text-lg xl:text-xl font-bold">$15,000</div>
-                                <div class="text-gray-600">This Month</div>
+                                <div class="text-theme-20 text-lg xl:text-xl font-bold">{{ Str::rupiah($trBulanIni) }}</div>
+                                <div class="text-gray-600">Bulan ini</div>
                             </div>
+                            @if ($trBulanLalu != null)    
                             <div class="w-px h-12 border border-r border-dashed border-gray-300 mx-4 xl:mx-6"></div>
                             <div>
-                                <div class="text-gray-600 text-lg xl:text-xl font-medium">$10,000</div>
-                                <div class="text-gray-600">Last Month</div>
+                                <div class="text-gray-600 text-lg xl:text-xl font-medium">{{ Str::rupiah($trBulanLalu) }}</div>
+                                <div class="text-gray-600">Bulan lalu</div>
                             </div>
-                        </div>
-                        <div class="dropdown relative xl:ml-auto mt-5 xl:mt-0">
-                            <button class="dropdown-toggle button font-normal border text-white relative flex items-center text-gray-700">
-                                Filter by Category <i data-feather="chevron-down" class="w-4 h-4 ml-2"></i> 
-                            </button>
-                            <div class="dropdown-box mt-10 absolute w-40 top-0 xl:right-0 z-20">
-                                <div class="dropdown-box__content box p-2 overflow-y-auto h-32">
-                                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">PC & Laptop</a>
-                                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">Smartphone</a>
-                                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">Electronic</a>
-                                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">Photography</a>
-                                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">Sport</a>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="report-chart">
-                        <canvas id="report-line-chart" height="160" class="mt-6"></canvas>
+                        <div id="transaksi" style="min-width: 310px; height: 400px; max-width: 600px;" class="mt-6"></div>
                     </div>
                 </div>
             </div>
             <!-- END: Sales Report -->
             <!-- BEGIN: Weekly Top Seller -->
-            <div class="col-span-12 sm:col-span-6 lg:col-span-3 mt-8">
+            <div class="col-span-12 lg:col-span-6 mt-8">
                 <div class="intro-y flex items-center h-10">
-                    <h2 class="text-lg font-medium truncate mr-5">Weekly Top Seller</h2>
+                    <h2 class="text-lg font-medium truncate mr-5">Sampah Masuk</h2>
                     <a href="" class="ml-auto text-theme-1 truncate">See all</a>
                 </div>
                 <div class="intro-y box p-5 mt-5">
-                    <canvas class="mt-3" id="report-pie-chart" height="280"></canvas>
-                    <div class="mt-8">
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 bg-theme-11 rounded-full mr-3"></div> 
-                            <span class="truncate">17 - 30 Years old</span>
-                            <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                            <span class="font-medium xl:ml-auto">62%</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <div class="w-2 h-2 bg-theme-1 rounded-full mr-3"></div> 
-                            <span class="truncate">31 - 50 Years old</span>
-                            <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                            <span class="font-medium xl:ml-auto">33%</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <div class="w-2 h-2 bg-theme-12 rounded-full mr-3"></div> 
-                            <span class="truncate">>= 50 Years old</span>
-                            <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                            <span class="font-medium xl:ml-auto">10%</span>
+                    <div class="flex flex-col xl:flex-row xl:items-center">
+                        <div class="flex">
+                            <div>
+                                <div class="text-theme-20 text-lg xl:text-xl font-bold">{{ $sampahCount }} Kg</div>
+                                <div class="text-gray-600">Total Sampah</div>
+                            </div>
                         </div>
                     </div>
+                    <div id="sampah" class="mt-6" style="min-width: 310px; height: 400px; max-width: 600px;"></div>
                 </div>
             </div>
             <!-- END: Weekly Top Seller -->
-            <!-- BEGIN: Sales Report -->
-            <div class="col-span-12 sm:col-span-6 lg:col-span-3 mt-8">
-                <div class="intro-y flex items-center h-10">
-                    <h2 class="text-lg font-medium truncate mr-5">Sales Report</h2>
-                    <a href="" class="ml-auto text-theme-1 truncate">See all</a>
-                </div>
-                <div class="intro-y box p-5 mt-5">
-                    <canvas class="mt-3" id="report-donut-chart" height="280"></canvas>
-                    <div class="mt-8">
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 bg-theme-11 rounded-full mr-3"></div> 
-                            <span class="truncate">17 - 30 Years old</span>
-                            <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                            <span class="font-medium xl:ml-auto">62%</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <div class="w-2 h-2 bg-theme-1 rounded-full mr-3"></div> 
-                            <span class="truncate">31 - 50 Years old</span>
-                            <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                            <span class="font-medium xl:ml-auto">33%</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <div class="w-2 h-2 bg-theme-12 rounded-full mr-3"></div> 
-                            <span class="truncate">>= 50 Years old</span>
-                            <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                            <span class="font-medium xl:ml-auto">10%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END: Sales Report -->
             
             <!-- BEGIN: General Report -->
             <div class="col-span-12 grid grid-cols-12 gap-6 mt-8">
@@ -256,7 +201,7 @@
                             <div class="intro-x">
                                 <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
                                     <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                        <img alt="Midone Laravel Admin Dashboard Starter Kit" src="{{ asset('dist/images/profile-1.jpg') }}">
+                                        <img alt="{{ $transaksi->Nasabah()->get()->implode('name') }}" src="{{ asset('dist/images/profile-1.jpg') }}">
                                     </div>
                                     <div class="ml-4 mr-auto">
                                         <div class="font-medium">{{ $transaksi->Nasabah()->get()->implode('name') }}</div>
@@ -270,37 +215,165 @@
                     </div>
                 </div>
                 <!-- END: Transactions -->
-                <!-- BEGIN: Tugas Perjalanan -->
-                <div class="col-span-12 md:col-span-6 xl:col-span-12 xxl:col-span-12 xl:col-start-1 xl:row-start-1 xxl:col-start-auto xxl:row-start-auto mt-3">
-                    <div class="intro-x flex items-center h-10">
-                        <h2 class="text-lg font-medium truncate mr-auto">Tugas Perjalanan</h2>
-                        <button data-carousel="important-notes" data-target="prev" class="slick-navigator button px-2 border border-gray-400 flex items-center text-gray-700 mr-2">
-                            <i data-feather="chevron-left" class="w-4 h-4"></i>
-                        </button>
-                        <button data-carousel="important-notes" data-target="next" class="slick-navigator button px-2 border border-gray-400 flex items-center text-gray-700">
-                            <i data-feather="chevron-right" class="w-4 h-4"></i>
-                        </button>
+
+                <!-- BEGIN: Weekly Best Sellers -->
+                <div class="col-span-12 md:col-span-6 xl:col-span-4 xxl:col-span-12 mt-3 xxl:mt-3">
+                    <div class="intro-y flex items-center h-10">
+                        <h2 class="text-lg font-medium truncate mr-5">
+                            Sampah Minggu ini
+                        </h2>
                     </div>
-                    <div class="mt-5 intro-x">
-                        <div class="slick-carousel box zoom-in" id="important-notes">
-                            @foreach ($tugasPerjalanan as $tugas)
-                            <div class="p-5">
-                                <div class="text-base font-medium truncate">{{ $tugas->user()->get()->implode('name') }}</div>
-                                <div class="text-gray-500 mt-1">{{ $tugas->waktuTugas }}</div>
-                                <div class="text-gray-600 text-justify mt-1">{{ $tugas->keterangan }}</div>
-                                <div class="font-medium flex mt-5">
-                                    <a href="{{ route('tugas-perjalanan') }}"><button type="button" class="button button--sm bg-gray-200 text-gray-600">Detial</button></a>
+                    <div class="mt-5">
+                        @foreach ($sampahMinggu as $s)
+                            <div class="intro-y">
+                                <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-md overflow-hidden">
+                                        <img alt="{{ $s['sampah'][0]->nama }}" src="{{ asset('dist/images/profile-1.jpg') }}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">{{ $s['sampah'][0]->nama }}</div>
+                                        <div class="text-gray-600 text-xs">{{ $s['sampah'][0]->kategori()->get()->implode('nama') }}</div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-theme-9 text-white cursor-pointer font-medium">{{ $s['value'] }}Kg</div>
                                 </div>
                             </div>
-                            @endforeach
-                        </div>
-                            
-                        </div>
+                        @endforeach
+                        <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-theme-15 text-theme-16">View More</a> 
                     </div>
                 </div>
-                <!-- END: Tugas Perjalanan -->
+                <!-- END: Weekly Best Sellers -->              
                 
             </div>
         </div>
     </div>
 @endsection
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+    var sampah = <?php echo json_encode($sampah)?>;
+    document.addEventListener('DOMContentLoaded', function () {
+        const chart = Highcharts.chart('sampah', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title:{
+                text:''
+            },
+            tooltip: {
+                backgroundColor: '#fff',
+                borderColor: 'black',
+                borderRadius: 8,
+                borderWidth: 0,
+                zIndex: 11,
+                formatter: function() {
+                    return `<b>${this.key} (${this.percentage.toFixed(2)}%)</b><br> Jumlah ${this.y}Kg`;
+                }
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                itemMarginTop: 20,
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    innerSize: '80%',
+                    showInLegend: true,
+                    colors: ['#36AE7C', '#187498', '#F9D923', '#EB5353', '#5F7161']
+                }
+            },
+            series: [{
+                name: 'Sampah',
+                colorByPoint: true,
+                data: sampah
+            }],
+            credits:{
+                enabled:false,
+            }
+        });
+
+        Highcharts.chart('transaksi', {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ''
+            },
+
+            yAxis: {
+                title: false
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                accessibility: {
+                    description: 'Months of the year'
+                },
+                
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            legend: {
+                align: 'center',
+                verticalAlign: 'bottom',
+                x: 0,
+                y: 0
+            },
+            plotOptions: {
+                series: {
+                    marker: {
+                        enabled: false
+                    },
+                    cursor: 'pointer',
+                }
+            },
+
+            series: [{
+                name: 'Tabungan',
+                data: [1500000, 2000000, 2150000, 2500000, 2350000, 2100000, 2650000, 2700000,2900000, 3150000, 3300000, 3500000],
+                color: '#36AE7C', 
+            }, {
+                name: 'Iuran',
+                data: [1000000, 1250000, 1500000, 1350000, 1250000, 1150000, 1500000, 2050000,1950000, 1450000, 1800000, 2250000,],
+                color: '#5F7161',
+                dashStyle: 'ShortDot'
+            },],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'vertical',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            },
+            credits:{
+                enabled:false,
+            }
+
+            });
+    });
+
+   
+</script>
+     
+    

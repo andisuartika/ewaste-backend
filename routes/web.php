@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         // NASABAH
         Route::get('/admin/nasabah', [NasabahController::class, 'index'])->name('nasabah');
         Route::get('/admin/nasabah/detail/{id}', [NasabahController::class, 'show'])->name('detailNasabah');
+        Route::get('/admin/nasabah/print/{id}', [NasabahController::class, 'print'])->name('printNasabah');
+        Route::put('/admin/nasabah/update/{id}', [NasabahController::class, 'update'])->name('updateNasabah');
+        Route::get('/admin/nasabah/delete/{id}', [NasabahController::class, 'destroy'])->name('deleteNasabah');
 
         // PETUGAS
         Route::get('/admin/petugas', [PetugasController::class, 'index'])->name('petugas');

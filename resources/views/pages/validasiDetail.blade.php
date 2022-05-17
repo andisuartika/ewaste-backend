@@ -136,61 +136,73 @@
                     </tfoot>
                 </table>
             </div>
-            <div class="flex flex-wrap justify-end lg:flex-no-wrap items-center text-right py-5 mt-5">
-                <a href="javascript:;" data-toggle="modal" data-target="#modal-tangguhkan" class="flex items-center  button button--xl bg-theme-6 text-white mr-2">
-                    <i data-feather="file-text" class="w-4 h-4 mr-2"></i>Tangguhkan
-                </a>
-                <div class="modal" id="modal-tangguhkan">
-                    <div class="modal__content">
+            @endif
+            @if (!isset($perjalanan->waktuSelesai))
+                <div class="flex flex-wrap justify-end lg:flex-no-wrap items-center text-right py-5 mt-5">
+                    <button  class="flex items-center  button button--xl bg-gray-200 text-gray-600 mr-2" disabled>
+                        <i data-feather="file-text" class="w-4 h-4 mr-2"></i>Tangguhkan
+                    </button>
+                    <div class="text-center"> 
+                        <button class="flex items-center  button bg-gray-200 text-gray-600" disabled>
+                            <i data-feather="check-square" class="w-4 h-4 mr-2"  ></i>Diterima
+                        </button> 
+                    </div>   
+                </div>
+            @else
+                <div class="flex flex-wrap justify-end lg:flex-no-wrap items-center text-right py-5 mt-5">
+                    <a href="javascript:;" data-toggle="modal" data-target="#modal-tangguhkan" class="flex items-center  button button--xl bg-theme-6 text-white mr-2">
+                        <i data-feather="file-text" class="w-4 h-4 mr-2"></i>Tangguhkan
+                    </a>
+                    <div class="modal" id="modal-tangguhkan">
+                        <div class="modal__content">
+                                <form action="{{ route('updateValidasi', $perjalanan->id) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                <div class="form-group">
+                                    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+                                        <h2 class="font-medium text-base mr-auto">
+                                            Tambahkan Keterangan
+                                        </h2>
+                                    </div>
+                                    <input type="hidden" name="ditangguhkan" id="ditangguhkan" value="DITANGGUHKAN">
+                                    <div class="p-5 grid grid-cols-12">
+                                        <div class="col-span-12"> 
+                                            <label>Keterangan</label> 
+                                            <input type="text" name="keterangan" id="keterangan" class="input w-full border mt-2 flex-1" placeholder="Alasan ditangguhkan"> 
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="px-5 py-3 text-right border-t border-gray-200">
+                                    <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Batal</button>
+                                    <button type="submit"  class="button w-20 bg-theme-1 text-white">Kirim</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="text-center"> 
+                        <a href="javascript:;" data-toggle="modal" data-target="#delete-modal-preview" class="flex items-center  button bg-theme-1 text-white">
+                            <i data-feather="check-square" class="w-4 h-4 mr-2"  ></i>Diterima
+                        </a> 
+                    </div>
+                    <div class="modal" id="delete-modal-preview">
+
+                        <div class="modal__content">
                             <form action="{{ route('updateValidasi', $perjalanan->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                            <div class="form-group">
-                                <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-                                    <h2 class="font-medium text-base mr-auto">
-                                        Tambahkan Keterangan
-                                    </h2>
+                                <div class="p-5 text-center"> <i data-feather="alert-circle" class="w-16 h-16 text-theme-1 mx-auto mt-3"></i>
+                                    <div class="text-3xl mt-5">Apakah anda yakin?</div>
+                                    <div class="text-gray-600 mt-2">Semua transaksi diterima dan poin akan masuk ke nasabah</div>
                                 </div>
-                                <input type="hidden" name="ditangguhkan" id="ditangguhkan" value="DITANGGUHKAN">
-                                <div class="p-5 grid grid-cols-12">
-                                    <div class="col-span-12"> 
-                                        <label>Keterangan</label> 
-                                        <input type="text" name="keterangan" id="keterangan" class="input w-full border mt-2 flex-1" placeholder="Alasan ditangguhkan"> 
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="px-5 py-3 text-right border-t border-gray-200">
-                                <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 mr-1">Batal</button>
-                                <button type="submit"  class="button w-20 bg-theme-1 text-white">Kirim</button>
-                            </div>
-                        </form>
-                    </div>
+                                <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="button w-24 border text-gray-700 mr-1">Batal</button> 
+                                <button type="submit" class="button w-24 bg-theme-1 text-white">Yakin</button> </div>
+                            </form>
+                        </div>
+                    </div>    
                 </div>
-                <div class="text-center"> 
-                    <a href="javascript:;" data-toggle="modal" data-target="#delete-modal-preview" class="flex items-center  button bg-theme-1 text-white">
-                        <i data-feather="check-square" class="w-4 h-4 mr-2"  ></i>Diterima
-                    </a> 
-                </div>
-                <div class="modal" id="delete-modal-preview">
-
-                    <div class="modal__content">
-                        <form action="{{ route('updateValidasi', $perjalanan->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <div class="p-5 text-center"> <i data-feather="alert-circle" class="w-16 h-16 text-theme-1 mx-auto mt-3"></i>
-                                <div class="text-3xl mt-5">Apakah anda yakin?</div>
-                                <div class="text-gray-600 mt-2">Semua transaksi diterima dan poin akan masuk ke nasabah</div>
-                            </div>
-                            <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="button w-24 border text-gray-700 mr-1">Batal</button> 
-                            <button type="submit" class="button w-24 bg-theme-1 text-white">Yakin</button> </div>
-                        </form>
-                    </div>
-                </div>    
-            </div>
-           
-        </div>
             @endif
+        </div>
         <!-- END: Datatable -->
         
 

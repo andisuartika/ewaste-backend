@@ -13,24 +13,39 @@
                         <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                             <div class="col-span-12 sm:col-span-6">
                                 <label>Email</label>
-                                <input wire:model="email" type="email" id="email" name="email" class="input w-full border mt-2 flex-1" value="{{ $email }}" placeholder="example@gmail.com" required>
+                                <input wire:model="email" type="email" id="email" name="email" class="input w-full border mt-2 flex-1 @error('email') border border-theme-6 @enderror" value="{{ $email }}" placeholder="example@gmail.com" required>
+                                @error('email')
+                                    <div class="text-theme-6 mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             
                             <div class="col-span-12 sm:col-span-6">
                                 <label>Password</label>
-                                <input wire:model="password" type="password" id="password" name="password" class="input w-full border mt-2 flex-1"   placeholder="********" required @if ($id_nasabah != null) disabled @endif>
+                                <input wire:model="password" type="password" id="password" name="password" class="input w-full border mt-2 flex-1 @error('password') border border-theme-6 @enderror"   placeholder="********" required @if ($id_nasabah != null) disabled @endif >
+                                @error('password')
+                                    <div class="text-theme-6 mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-span-12 sm:col-span-6">
                                 <label>Nama</label>
-                                <input wire:model="name" type="text" id="name" name="name" class="input w-full border mt-2 flex-1"  value="{{ $name }}" placeholder="Nama Nasabah">
+                                <input wire:model="name" type="text" id="name" name="name" class="input w-full border mt-2 flex-1 @error('name') border border-theme-6 @enderror"   value="{{ $name }}" placeholder="Nama Nasabah">
+                                @error('name')
+                                    <div class="text-theme-6 mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-span-12 sm:col-span-6">
                                 <label>No Hp</label> 
-                                <input wire:model="noHp" type="number" id="noHp" name="noHp" class="input w-full border mt-2 flex-1" placeholder="08123xxx" value="{{ $noHp }}">
+                                <input wire:model="noHp" type="number" id="noHp" name="noHp" class="input w-full border mt-2 flex-1 @error('noHp') border border-theme-6 @enderror" placeholder="08123xxx" value="{{ $noHp }}">
+                                @error('noHp')
+                                    <div class="text-theme-6 mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-span-12 sm:col-span-12">
                                 <label>Alamat</label>
-                                <input wire:model="alamat" type="text" id="alamat" name="alamat" class="input w-full border mt-2 flex-1" placeholder="Jalan.xxx" value="{{ $alamat }}">
+                                <input wire:model="alamat" type="text" id="alamat" name="alamat" class="input w-full border mt-2 flex-1 @error('alamat') border border-theme-6 @enderror" placeholder="Jalan.xxx" value="{{ $alamat }}">
+                                @error('alamat')
+                                    <div class="text-theme-6 mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             @if ($id_nasabah)                   
                             <div class="mt-3"> <label>Aktif</label>

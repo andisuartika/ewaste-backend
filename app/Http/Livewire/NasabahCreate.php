@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class NasabahCreate extends Component
 {
     public $name;
+    public $kode;
     public $email;
     public $password;
     public $alamat;
@@ -24,32 +25,60 @@ class NasabahCreate extends Component
     protected $messages = [
         'name.required' => 'Nama tidak boleh Kosong',
         'email.required' => 'Email tidak boleh Kosong',
-        'alamat.required' => 'alamat tidak boleh Kosong',
+        'alamat.required' => 'Alamat tidak boleh Kosong',
         'noHp.required' => 'No tidak boleh Kosong',
         'password.required' => 'Password tidak boleh Kosong',
-
         'email.unique' => 'Email sudah terdaftar',
         'noHp.unique' => 'No sudah terdaftar',
     ];
 
 
     public function store()
-    {
-        
-        $this->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'alamat' => 'required',
-            'noHp' => 'required',
-        ]);
+    {   
+        // Mengambil kode terbesar
+        $kodeMax = User::max('kode_nasabah');
+        $result = substr($kodeMax, 4, 4);
+        $result++;
 
+        // GET USER
+        $user = User::find($this->id_nasabah);
+
+        
+
+        if($this->id_nasabah == null){
+            $this->validate([
+                'name' => 'required',
+                'password' => 'required',
+                'email' => 'required|email|unique:users,email,'.$this->id_nasabah,
+                'alamat' => 'required',
+                'noHp' => 'required|unique:users,noHp,'.$this->id_nasabah,
+            ]);
+    
+        }else{
+            $this->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,'.$this->id_nasabah,
+                'alamat' => 'required',
+                'noHp' => 'required|unique:users,noHp,'.$this->id_nasabah,
+            ]);
+        }
+        
+        // CEK ROLE
         if($this->isActive){
             $this->roles = 'NASABAH';
+
+            // ADD KODE NASABAH
+            if($user->kode_nasabah == null){
+                $this->kode = 'NEWB' . sprintf("%04s", $result) . '-' . sprintf("%04s", $this->id_nasabah) . '-' . date("dmy");
+            }else{
+                $this->kode = $user->kode_nasabah ;
+            }
+
         }else{
             $this->roles = 'USER';
         }
 
-        // dd($this->roles);
+        // dd($this->kode);
 
 
 
@@ -65,6 +94,7 @@ class NasabahCreate extends Component
         }else{
             $nasabah = User::updateOrCreate(['id' => $this->id_nasabah], [
                 'name' => $this->name,
+                'kode_nasabah' => $this->kode,
                 'email' => $this->email,
                 'alamat' => $this->alamat,
                 'noHp' => $this->noHp,

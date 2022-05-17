@@ -1,4 +1,13 @@
 @extends('../layouts/side-menu')
+<style>
+    .note-modal-backdrop, .note-modal-backdrop.in{
+    z-index:1000;
+    }
+
+    .modal {
+    z-index:1001;
+    }
+</style>
 
 @section('subhead')
     <title>Admin | E-Waste - Tentang Aplikasi</title>
@@ -56,8 +65,7 @@
                             <img class="mx-auto" src="{{ asset('img/e-waste.png') }}" alt="{{ asset('img/e-waste.png') }}" width="100">
                         </section>
                         @if(isset($tentang)){!! $tentang->deskripsi !!}@endif
-                        
-                        
+                       
                     </div>
                 </div>
             </div>
@@ -65,3 +73,6 @@
         <!-- END: Post Info -->
     </div>
 @endsection
+<script>
+    $('.summernote').summernote({ dialogsInBody: true, });
+</script>

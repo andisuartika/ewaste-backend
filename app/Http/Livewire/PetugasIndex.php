@@ -33,7 +33,7 @@ class PetugasIndex extends Component
 
     public function render()
     {
-        $this->pengguna = User::where('roles','PENGGUNA')->get();
+        $this->pengguna = User::where('roles','USER')->get();
         $this->nasabah = User::where('roles','NASABAH')->get();
         $this->petugas = User::where('roles','PETUGAS')->get();
 
@@ -92,7 +92,7 @@ class PetugasIndex extends Component
     {
         $user = User::find($this->delete_id);
   
-        $user->roles = 'NASABAH';
+        $user->roles = 'USER';
 
         $user->save();
 

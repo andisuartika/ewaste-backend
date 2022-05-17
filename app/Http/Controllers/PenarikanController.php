@@ -91,7 +91,7 @@ class PenarikanController extends Controller
             $transaksi->keterangan = 'TRANSAKSI BERHASIL DILAKUKAN';
 
             $nasabah = User::find($transaksi->id_user);
-            $total = $transaksi->jumlah + 2500;
+            $total = $transaksi->jumlah;
 
             $nasabah->points -= $total;
 

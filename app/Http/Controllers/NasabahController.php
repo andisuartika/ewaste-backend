@@ -17,6 +17,13 @@ class NasabahController extends Controller
         return view('pages.nasabah');
     }
 
+    public function print($id)
+    {
+        $user = User::find($id);
+        return view('pages.nasabahPrint',compact('user'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -71,7 +78,24 @@ class NasabahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'alamat' => 'required',
+            'noHp' => 'required|unique:users,noHp,'.$id,
+        ]);
+
+        $nasabah = User::find($id);
+
+        $nasabah->name = $request->name;
+        $nasabah->email = $request->email;
+        $nasabah->alamat = $request->alamat;
+        $nasabah->noHp = $request->noHp;
+
+        $nasabah->save();
+
+        return view('pages.nasabah');
     }
 
 
@@ -98,6 +122,8 @@ class NasabahController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+
+        return view('pages.nasabah');
     }
 }

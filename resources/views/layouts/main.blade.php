@@ -9,6 +9,7 @@
         <script src="https://kit.fontawesome.com/c1cbb08a6f.js" crossorigin="anonymous"></script>
         <!-- END: JS Assets-->
         <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+        {{-- <script type="text/javascript"  src="http://www.chartjs.org/assets/Chart.js"></script> --}}
         @yield('scripts-filepond')
     </body>
 @endsection

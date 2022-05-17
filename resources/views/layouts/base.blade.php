@@ -29,8 +29,13 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- sweetalert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     @method('scripts')

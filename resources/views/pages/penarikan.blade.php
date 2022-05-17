@@ -40,7 +40,7 @@
                             <div class="font-medium whitespace-no-wrap">{{ $tr->bank()->get()->implode('nama') }} | {{ $tr->nomor }}</div>
                         </td>
                         <td class="border-b">{{ $tr->nama }}</td>
-                        <td class="border-b">Rp.{{ $tr->jumlah }}</td>
+                        <td class="border-b">{{ Str::rupiah($tr->jumlah-2500)}}</td>
                         <td class="w-40 border-b">
                             <div class="flex items-center sm:justify-center text-theme-6">
                                 <i data-feather="clock" class="w-4 h-4 mr-2"></i> {{ $tr->status }}
@@ -131,7 +131,7 @@
                             <div class="font-medium whitespace-no-wrap">{{ $tr->bank()->get()->implode('nama') }} | {{ $tr->nomor }}</div>
                         </td>
                         <td class="border-b">{{ $tr->nama }}</td>
-                        <td class="border-b">Rp.{{ $tr->jumlah }}</td>
+                        <td class="border-b">{{ Str::rupiah($tr->jumlah) }}</td>
                         <td class="w-40 border-b">
                             @if ($tr->status == 'BERHASIL')
                                 <div class="flex items-center sm:justify-center text-theme-9">

@@ -32,7 +32,7 @@
                     </td>
                     <td class="border-b">{{ $user->noHp }}</td>
                     <td class="w-40 border-b">
-                        Rp.{{ $user->iurans }}
+                        {{ Str::rupiah($user->iurans) }}
                     </td>
                     <td class="border-b">
                         <a href="javascript:;" data-toggle="modal" data-target="#{{ $user->id }}">
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="px-5 flex">
                                         <div class="mr-auto">Total Iurans</div>
-                                        <div class="font-semibold">Rp.{{ $user->iurans }}</div>
+                                        <div class="font-semibold">{{ Str::rupiah($user->iurans) }}</div>
                                     </div>
                                     <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                                         <div class="col-span-12 sm:col-span-12">

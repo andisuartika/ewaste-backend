@@ -25,19 +25,6 @@
                 <div class="flex flex-wrap justify-end lg:flex-no-wrap items-center text-right p-5">
                     <a href="{{ route('detailValidasi',$perjalanan->id) }}" class="flex items-center  button button--sm text-gray-700 border border-gray-300 mr-2">
                         <i data-feather="file-text" class="w-4 h-4 mr-2"></i>Detail</a>
-                    <div class="dropdown relative"> <button class="flex items-center  dropdown-toggle button button--sm bg-theme-1 text-white">
-                        <i data-feather="settings" class="w-4 h-4 mr-2"></i>Aksi</button>
-                        <div class="dropdown-box mt-10 absolute w-48 top-0 left-0 z-20">
-                            <div class="dropdown-box__content box p-2"> 
-                                <a href="{{ $perjalanan->id }}" class="flex items-center  p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> 
-                                    <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Konfirmasi
-                                </a> 
-                                <a href="" class="flex items-center  p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> 
-                                    <i data-feather="x-circle" class="w-4 h-4 mr-2"></i> Tangguhkan
-                                </a> 
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -78,7 +65,7 @@
                         </div>
                     </td>
                     <td class="border-b text-center @if ($transaksi->jenisTransaksi == "TRANSAKSI IURANS") text-theme-6 @endif">{{ $transaksi->perjalanan()->get()->implode('kode') }}</td>
-                    <td class="border-b @if ($transaksi->jenisTransaksi == "TRANSAKSI IURANS") text-theme-6 @endif">Rp.{{ $transaksi->total }}</td>
+                    <td class="border-b @if ($transaksi->jenisTransaksi == "TRANSAKSI IURANS") text-theme-6 @endif">{{ Str::rupiah($transaksi->total) }}</td>
                     <td class="border-b @if ($transaksi->jenisTransaksi == "TRANSAKSI IURANS") text-theme-6 @endif">{{ $transaksi->created_at }}</td>
                     <td class="border-b @if ($transaksi->jenisTransaksi == "TRANSAKSI IURANS") text-theme-6 @endif">{{ $transaksi->jenisTransaksi }}</td>
                     <td class="w-40 border-b">

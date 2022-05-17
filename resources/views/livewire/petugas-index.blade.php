@@ -132,7 +132,7 @@
         const url = $(this).attr('href');
         swal({
             title: 'Yakin Hapus Petugas?',
-            text: 'Akun yang dihapus akan menjadi nasabah',
+            text: 'Akun akan dihapus dari petugas!',
             icon: 'warning',
             buttons: true,
             dangerMode: true,
