@@ -78,9 +78,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::get('/admin/penarikan-saldo', [PenarikanController::class, 'index'])->name('penarikan-saldo');
         Route::put('/admin/penarikan-saldo/store/{id}', [PenarikanController::class, 'update'])->name('poinStore');
 
-        // GRAPIK LAPORAN
-        Route::get('/admin/grapik-laporan', [GrapikController::class, 'index'])->name('grapik-laporan');
-        Route::get('/admin/grapik-laporan/detail/{id}', [GrapikController::class, 'index'])->name('detailGrapik');
+        // GRAFIK LAPORAN
+        Route::get('/admin/grafik-laporan', [GrapikController::class, 'index'])->name('grafik-laporan');
 
         // PUSH NOTIFICATION
         Route::get('/admin/push-notif', [PushNotifController::class, 'index'])->name('push-notif');

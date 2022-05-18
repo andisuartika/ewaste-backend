@@ -6,7 +6,7 @@
                 <tr>
                     <th class="border-b-2  whitespace-no-wrap">NASABAH</th>
                     <th class="border-b-2  whitespace-no-wrap">EMAIL</th>
-                    <th class="border-b-2  whitespace-no-wrap">NO HANPHONE</th>
+                    <th class="border-b-2  whitespace-no-wrap">BULAN</th>
                     <th class="border-b-2 whitespace-no-wrap">IURAN SAMPAH</th>
                     <th class="border-b-2 whitespace-no-wrap">ACTIONS</th>
                 </tr>

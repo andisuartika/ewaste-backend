@@ -10,66 +10,59 @@
         <title>E-Waste - Login Admin</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="dist/css/app.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" />
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer ></script> 
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
-    <body class="login">
-        <div class="container sm:px-10">
-            <div class="block xl:grid grid-cols-2 gap-4">
-                <!-- BEGIN: Login Info -->
-                <div class="hidden xl:flex flex-col min-h-screen">
-                    {{-- <a href="" class="-intro-x flex items-center pt-5">
-                        <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="dist/images/logo.svg">
-                        <span class="text-white text-lg ml-3"> Mid<span class="font-medium">One</span> </span>  
-                    </a>
-                    <div class="my-auto">
-                        <img alt="Midone Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="dist/images/illustration.svg">
-                        <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
-                            A few more clicks to 
-                            <br>
-                            sign in to your account.
-                        </div>
-                        <div class="-intro-x mt-5 text-lg text-white">Manage all your e-commerce accounts in one place</div>
-                    </div> --}}
-                </div>
-                <!-- END: Login Info -->
-                <!-- BEGIN: Login Form -->
-                <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
-                    <div class="my-auto mx-auto xl:ml-20 bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                        <div class="my-auto"></div>
-                        <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
-                            Sign In
-                        </h2>
-                        <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">Silahkan masuk menggunakan akun petugas E-Waste</div>
-                        <div class="intro-x mt-8">
-                            <input type="email" id="email" class="intro-x login__input input input--lg border border-gray-300 block" placeholder="Email" name="email" :value="old('email')" required>
-                            <input type="password" id="password" class="intro-x login__input input input--lg border border-gray-300 block mt-4" placeholder="Password" name="password" required autocomplete="current-password">
-                        </div>
-                        <div class="intro-x flex text-gray-700 text-xs sm:text-sm mt-4">
-                            {{-- <div class="flex items-center mr-auto">
-                                <input type="checkbox" class="input border mr-2" id="remember-me">
-                                <label class="cursor-pointer select-none" for="remember-me">Remember me</label>
+    <body class="p-0 bg-white">
+        <div class="2xl:container h-screen m-auto">
+            <div hidden class="fixed inset-0 w-7/12 lg:block">
+                <span class="absolute left-6 bottom-6 text-sm"></span>
+                <img class="w-full h-full object-cover" src="{{ asset('dist/images/bg-login.jpeg') }}"></img>
+            </div>
+            <div hidden role="hidden" class="fixed inset-0 w-6/12 ml-auto bg-white backdrop-blur-xl lg:block"></div>
+                <div class="relative h-full ml-auto lg:w-6/12">
+                    <div class="m-auto py-12 px-6 sm:p-20 xl:w-10/12 bg-white">
+                        <div class="my-3">
+                            <div class="intro-x text-center">
+                                <img src="{{ asset('img/e-waste.png') }}" alt="e-waste" width="100" class="mx-auto">
+                                <h2 class="text-2xl font-semibold text-center text-green-600 dark:text-white mt-3">Sign in</h2>
+                                <p class="mt-2 text-gray-500 dark:text-gray-300">Silahkan masuk menggunakan akun <b>Petugas</b> E-Waste</p>
                             </div>
-                            <a href="">Forgot Password?</a>  --}}
-                        </div>
-                        <div class="intro-x mt-8 xl:mt-8 text-center xl:text-left">
-                            <button class="button button--lg w-full  text-white bg-theme-1 xl:mr-3" type="submit">Login</button>
-                            {{-- <button class="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 mt-3 xl:mt-0">Sign up</button> --}}
-                        </div>
-                        <div class="intro-x mt-10 xl:mt-24 text-gray-700 text-center xl:text-left">
-                            E-Waste Management System
-                            <br>
-                            <a class="text-theme-1" href="">Terms and Conditions</a> & <a class="text-theme-1" href="">Privacy Policy</a> 
-                        </div>
-                    </form>
+                            <div class="mt-5 xl:mt-12 intro-x">
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div>
+                                        <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email Address</label>
+                                        <input type="email" name="email" id="email" placeholder="example@wastebali.com" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-green-400 dark:focus:border-green-400 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    </div>
+            
+                                    <div class="mt-6">
+                                        <div class="flex justify-between mb-2">
+                                            <label for="password" class="text-sm text-gray-600 dark:text-gray-200">Password</label>
+                                        </div>
+            
+                                        <input type="password" name="password" id="password" placeholder="Password" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-green-400 dark:focus:border-green-400 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    </div>
+            
+                                    <div class="mt-10">
+                                        <button
+                                            class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-theme-1 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600 focus:ring focus:ring-green-500 focus:ring-opacity-50">
+                                            Sign in
+                                        </button>
+                                    </div>
+                                    <div class="intro-x mt-6 xl:mt-12 mb-4 text-gray-700 text-center">
+                                        E-Waste Management System
+                                        <br>
+                                        <a class="text-theme-1" href="">Terms and Conditions</a> & <a class="text-theme-1" href="">Privacy Policy</a> 
+                                    </div>
+                                </form>
+                            </div>
                     </div>
                 </div>
-                <!-- END: Login Form -->
             </div>
-        </div>
-        <!-- BEGIN: JS Assets-->
+        </div><!-- BEGIN: JS Assets-->
         <script src="dist/js/app.js"></script>
         <!-- END: JS Assets-->
     </body>

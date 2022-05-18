@@ -22,30 +22,30 @@ class DashboardController extends Controller
         $nasabah = User::where('roles','=','NASABAH')->count();
         $petugas = User::where('roles','=','PETUGAS')->orWhere('roles','=','ADMIN')->count();
         $sampahMasuk = TransaksiItems::whereMonth('created_at',$date->month)->sum('kuantitas');
-        $sampahCount = TransaksiItems::where('sampah','!=',6)->sum('kuantitas');
+        $sampahCount = TransaksiItems::where('sampah','!=',6)->whereMonth('created_at',$date->month)->sum('kuantitas');
         $trBulanIni = Transaksi::where('status','=','BERHASIL')->where('jenisTransaksi','=','TRANSAKSI MASUK')->whereMonth('created_at', $date->month)->sum('total');
         $trBulanLalu = Transaksi::where('status','=','BERHASIL')->where('jenisTransaksi','=','TRANSAKSI MASUK')->whereMonth('created_at', $date->month-1)->sum('total');
         $sampahKeluar = 0;
         $sampah = [
             [
                 'name' => 'Organik', 
-                'y' => TransaksiItems::where('sampah',1)->sum('kuantitas')
+                'y' => TransaksiItems::where('sampah',1)->whereMonth('created_at',$date->month)->sum('kuantitas')
             ],
             [
                 'name' => 'Plastik',
-                'y' => TransaksiItems::where('sampah',2)->sum('kuantitas'),
+                'y' => TransaksiItems::where('sampah',2)->whereMonth('created_at',$date->month)->sum('kuantitas'),
             ],
             [
                 'name' => 'Kertas',
-                'y' => TransaksiItems::where('sampah',3)->sum('kuantitas')
+                'y' => TransaksiItems::where('sampah',3)->whereMonth('created_at',$date->month)->sum('kuantitas')
             ],
             [
                 'name'=>'Logam',
-                'y' => TransaksiItems::where('sampah',4)->sum('kuantitas')
+                'y' => TransaksiItems::where('sampah',4)->whereMonth('created_at',$date->month)->sum('kuantitas')
             ],
             [
                 'name' => 'Kaca',
-                'y' => TransaksiItems::where('sampah',5)->sum('kuantitas')
+                'y' => TransaksiItems::where('sampah',5)->whereMonth('created_at',$date->month)->sum('kuantitas')
             ],
         ];
 

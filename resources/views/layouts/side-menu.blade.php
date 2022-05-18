@@ -72,9 +72,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('grapik-laporan') }}" class="side-menu @yield('grapik-laporan')">
+                    <a href="{{ route('grafik-laporan') }}" class="side-menu @yield('grafik-laporan')">
                         <div class="side-menu__icon"> <i data-feather="bar-chart-2"></i> </div>
-                        <div class="side-menu__title"> Grapik Laporan </div>
+                        <div class="side-menu__title"> Grafik Laporan </div>
                     </a>
                 </li>
                 <li class="side-nav__devider my-6"></li>

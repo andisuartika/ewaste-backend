@@ -66,9 +66,9 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('grapik-laporan') }}" class="menu @yield('grapik-laporan')">
+            <a href="{{ route('grafik-laporan') }}" class="menu @yield('grafik-laporan')">
                 <div class="menu__icon"> <i data-feather="bar-chart-2"></i> </div>
-                <div class="menu__title"> Grapik Laporan </div>
+                <div class="menu__title"> Grafik Laporan </div>
             </a>
         </li>
         <li class="nav__devider my-6"></li>
