@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use Exception;
+use Carbon\Carbon;
 use App\Models\Perjalanan;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PerjalananController extends Controller
 {
@@ -36,6 +38,54 @@ class PerjalananController extends Controller
             $perjalanan,
             'Data Perjalanan berhasil diambil'
         );
+    }
+
+    public function getByPetugas(Request $request)
+    {
+        $date =Carbon::today();
+
+        $id_petugas = Auth::user()->id;
+
+        $perjalanan = Perjalanan::where('id_petugas',$id_petugas)->whereDate('waktuTugas',$date)->get();
+        if ($perjalanan) {
+            return ResponseFormatter::success(
+                $perjalanan,
+                'Data Perjalanan berhasil diambil'
+            );
+        } else {
+            return ResponseFormatter::error(
+                null,
+                'Data Perjalanan tidak ada',
+                404
+            );
+        }
+        
+    }
+
+    public function updateByPetugas(Request $request, $id)
+    {
+        $status = $request->input('status');
+        $id_petugas = Auth::user()->id;
+
+        $perjalanan = Perjalanan::find($id);
+
+        if ($perjalanan->id_petugas == $id_petugas) {
+
+            $perjalanan->status = $status;
+            $perjalanan->save();
+
+            return ResponseFormatter::success(
+                $perjalanan,
+                'Data Perjalanan berhasil diubah'
+            );
+        } else {
+            return ResponseFormatter::error(
+                null,
+                'Anda Tidak Memiliki Akses!',
+                404
+            );
+        }
+
     }
 
     public function createPerjalanan(Request $request)

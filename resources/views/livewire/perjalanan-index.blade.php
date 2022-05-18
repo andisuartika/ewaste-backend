@@ -67,8 +67,8 @@
    
     
     <!-- BEGIN: Data List -->
-    <div wire:ignore class=" datatable-wrapper box p-5 mt-5">
-        <table class="table table-report table-report--bordered display datatable w-full">
+    <div wire:ignore class="datatable-wrapper box p-5 mt-5">
+        <table id="perjalanan-tables" class="table table-report table-report--bordered display datatable w-full">
             <thead>
                 <tr>
                     <th class="border-b-2  whitespace-no-wrap">PETUGAS</th>
@@ -216,7 +216,8 @@
     <!-- END: Data List -->
 </div> 
 @livewireScripts
-    <script>
+<script>
+
         function validateForm() {
             event.preventDefault();
             const url = $(this).attr('href');
@@ -235,11 +236,11 @@
             });
         
     }
-    </script>
+</script>
 
 
     {{-- SELECT2 --}}
-    <script>
+<script>
             
         $(document).ready(function() {
         $('#select2').select2();
@@ -248,7 +249,7 @@
             
         });
     });
-    </script>
+</script>
 
 <script>
         window.addEventListener('closeModal', event =>{

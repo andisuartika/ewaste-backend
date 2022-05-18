@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Models\Transaksi;
+use App\Models\TransaksiItems;
+use App\Models\TransaksiPoin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -89,27 +92,30 @@ class UserController extends Controller
         $name = $request->input('name');
         $alamat = $request->input('alamat');
         $roles = $request->input('roles');
+        $kodeNasabah = $request->input('kode');
 
         if ($id) {
-            $sampah = User::find($id);
+            $user = User::find($id);
 
-            if ($sampah) {
+            if ($user) {
                 return ResponseFormatter::success(
-                    $sampah,
-                    'Data sampah berhasil diambil'
+                    $user,
+                    'Data Pengguna berhasil diambil'
                 );
             } else {
                 return ResponseFormatter::error(
                     null,
-                    'Data sampah tidak ada',
+                    'Data Pengguna tidak ada',
                     404
                 );
             }
         }
 
-        // dd($name);
 
-        $users = User::all();
+        $users = User::latest()->paginate(5);
+        if ($kodeNasabah) {
+            $users = User::where('kode_nasabah', '=',  $kodeNasabah )->first();
+        }
         if ($name) {
             $users = User::where('name', 'like', '%'. $name.'%' )->get();
         }
@@ -119,11 +125,21 @@ class UserController extends Controller
         if ($roles) {
            $users = User::where('roles', 'like', '%'. $roles.'%' )->get();
         }
-        return ResponseFormatter::success(
-            $users,
-            'Data User berhasil diambil'
-        );
+
+        if ($users) {
+            return ResponseFormatter::success(
+                $users,
+                'Data Pengguna berhasil diambil'
+            );
+        } else {
+            return ResponseFormatter::error(
+                null,
+                'Data Pengguna tidak ada',
+                404
+            );
+        }
     }
+
 
     public function updateProfile(Request $request)
     {
@@ -195,5 +211,81 @@ class UserController extends Controller
         $token = $request->user()->currentAccessToken()->delete();
 
         return ResponseFormatter::success($token, 'Token Revoked');
+    }
+
+
+    // NASABAH
+    public function getTabungan(Request $request)
+    {
+        $id = Auth::user()->id;
+
+        $tabungan = Transaksi::where('id_nasabah',$id)->where('status','=','BERHASIL')->where('jenisTransaksi','=','TRANSAKSI MASUK')->sum('total');
+        $ditarik = TransaksiPoin::where('id_user',$id)->where('status','=','BERHASIL')->sum('jumlah');
+        $sampah = [
+            'oraganik' => TransaksiItems::where('id_nasabah',$id)->where('sampah',1)->sum('kuantitas'),
+            'plastik' => TransaksiItems::where('id_nasabah',$id)->where('sampah',2)->sum('kuantitas'),
+            'kertas' => TransaksiItems::where('id_nasabah',$id)->where('sampah',3)->sum('kuantitas'),
+            'logam' => TransaksiItems::where('id_nasabah',$id)->where('sampah',4)->sum('kuantitas'),
+            'kaca' => TransaksiItems::where('id_nasabah',$id)->where('sampah',5)->sum('kuantitas'),
+        ];
+        $data = [
+            'tabungan' => $tabungan,
+            'ditarik' => $ditarik,
+            'sampah' => $sampah,
+        ];
+        if ($data) {
+            return ResponseFormatter::success(
+                $data,
+                'Data Tabungan Nasabah berhasil diambil'
+            );
+        } else {
+            return ResponseFormatter::error(
+                null,
+                'Data Tabungan Nasabah tidak ada',
+                404
+            );
+        }
+    
+    }
+
+    public function getTransaksi(Request $request)
+    {
+        $id = Auth::user()->id;
+
+        $transaksi = Transaksi::where('id_nasabah',$id)->get();
+        if ($transaksi) {
+            return ResponseFormatter::success(
+                $transaksi,
+                'Data Transaksi Nasabah berhasil diambil'
+            );
+        } else {
+            return ResponseFormatter::error(
+                null,
+                'Data Transaksi Nasabah tidak ada',
+                404
+            );
+        }
+
+    }
+
+
+    public function getTransaksiPetugas(Request $request)
+    {
+        $id = Auth::user()->id;
+
+        $transaksi = Transaksi::where('id_petugas',$id)->get();
+        if ($transaksi) {
+            return ResponseFormatter::success(
+                $transaksi,
+                'Data Transaksi Nasabah berhasil diambil'
+            );
+        } else {
+            return ResponseFormatter::error(
+                null,
+                'Data Transaksi Nasabah tidak ada',
+                404
+            );
+        }
+
     }
 }

@@ -47,7 +47,7 @@ class TransaksiController extends Controller
         }
 
         if ($roles == 'PETUGAS') {
-            $transaksi = Transaksi::with(['items.sampah'])->where('id_petugas', $id_user);
+            $transaksi = Transaksi::with(['items.sampah'])->with(['nasabah'])->where('id_petugas', $id_user);
 
             if ($status) {
                 $transaksi->where('status', $status);
