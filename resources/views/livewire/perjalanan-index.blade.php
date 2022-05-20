@@ -217,23 +217,24 @@
 </div> 
 @livewireScripts
 <script>
-
         function validateForm() {
             event.preventDefault();
             const url = $(this).attr('href');
-            swal({
-                title: 'Yakin Hapus Tugas Perjalanan?',
-                text: 'Data Tugas Perjalanan akan dihapus permanen!',
-                icon: 'warning',
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    @this.call('delete');
-                } else {
-                    swal("Data tidak dihapus!");
-                }
-            });
+            Swal.fire({
+            title: 'Yakin Hapus Tugas Perjalanan?',
+            text: "Data Tugas Perjalanan akan Dihapus Permanen!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#27AE60',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Yakin, Hapus!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                @this.call('delete');
+                
+            }
+        })
         
     }
 </script>
@@ -249,34 +250,4 @@
             
         });
     });
-</script>
-
-<script>
-        window.addEventListener('closeModal', event =>{
-            $('#header-footer-modal-preview').modal('hide');
-        });
-
-    window.addEventListener('swal:modalCreate', event => {
-        swal({
-        title: "Success!",
-        text: "Tugas Perjalanan Berhasil ditambahkan!",
-        icon: "success",
-        });
-    });
-
-    window.addEventListener('swal:modalUpdate', event => {
-        swal({
-        title: "Success!",
-        text: "Tugas Perjalanan Berhasil diubah!",
-        icon: "success",
-        });
-    });
-
-    window.addEventListener('swal:modalDelete', event => {
-    swal({
-      title: "Success!",
-      text: "Tugas Perjalanan Berhasil dihapus!",
-      icon: "success",
-    });
-  });
 </script>

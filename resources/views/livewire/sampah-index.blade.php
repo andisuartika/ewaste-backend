@@ -77,19 +77,29 @@
     function validateForm() {
         event.preventDefault();
         const url = $(this).attr('href');
-        swal({
+        Swal.fire({
             title: 'Yakin Hapus Sampah?',
-            text: 'Data Sampah akan Dihapus Permanen!',
+            text: "Data Sampah akan Dihapus Permanen!",
             icon: 'warning',
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
+            showCancelButton: true,
+            confirmButtonColor: '#27AE60',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Yakin, Hapus!'
+            }).then((result) => {
+            if (result.isConfirmed) {
                 @this.call('delete');
-            } else {
-                swal("Data tidak dihapus!");
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: 'Sampah Berhasil dihapus.',
+                    confirmButtonColor: '#27AE60',
+                })
+                
             }
-        });
-    
+        })
+
+ 
 }
 </script>

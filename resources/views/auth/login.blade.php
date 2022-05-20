@@ -19,7 +19,7 @@
         <div class="2xl:container h-screen m-auto">
             <div hidden class="fixed inset-0 w-7/12 lg:block">
                 <span class="absolute left-6 bottom-6 text-sm"></span>
-                <img class="w-full h-full object-cover" src="{{ asset('dist/images/bg-login.jpeg') }}"></img>
+                <img class="w-full h-full object-cover" src="{{ asset('dist/images/bg-login.png') }}"></img>
             </div>
             <div hidden role="hidden" class="fixed inset-0 w-6/12 ml-auto bg-white backdrop-blur-xl lg:block"></div>
                 <div class="relative h-full ml-auto lg:w-6/12">

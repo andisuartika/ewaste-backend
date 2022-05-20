@@ -11,4 +11,14 @@
 @section('subcontent')
     @livewire('transaksi-index')
 
+    <script>
+        @if($message = Session::get('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data Transaksi Berhasil diterima.',
+            confirmButtonColor: '#27AE60',
+        })
+        @endif
+    </script>
 @endsection

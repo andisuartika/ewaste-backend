@@ -12,3 +12,41 @@
     @livewire('perjalanan-index')
     </div> 
 @endsection
+
+<script>
+     window.addEventListener('swal:modalCreate', event => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Tugas Perjalanan Berhasil ditambahkan!',
+            showConfirmButton: false,
+            timer: 1500
+        })        
+    });
+
+    window.addEventListener('swal:modalUpdate', event => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data Tugas Perjalana Berhasil diupdate!',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/tugas-perjalanan";
+            }
+        })
+    });
+        
+
+    window.addEventListener('swal:modalDelete', event => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Tugas Perjalana Berhasil dihapus!',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/tugas-perjalanan";
+        }})
+    });
+</script>

@@ -56,6 +56,5 @@ class SampahIndex extends Component
         Sampah::find($this->delete_id)->delete();
         $this->dispatchBrowserEvent('swal:modalDelete');
 
-        return redirect(route('sampah'));
     }
 }

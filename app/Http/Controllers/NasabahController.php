@@ -111,7 +111,7 @@ class NasabahController extends Controller
         
         $user->save();
         
-        return redirect(route('pembayaran-iurans'));
+        return redirect(route('pembayaran-iurans'))->with('success','updated');
     }
 
     /**

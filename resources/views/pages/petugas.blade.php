@@ -19,27 +19,42 @@
     });
 
     window.addEventListener('swal:modalCreate', event => {
-        swal({
-        title: "Success!",
-        text: "Petugas Berhasil ditambahkan!",
-        icon: "success",
-        });
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Petugas Berhasil ditambahkan!.',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/petugas";
+        }})
+        
     });
 
     window.addEventListener('swal:modalUpdate', event => {
-    swal({
-    title: "Success!",
-    text: "Data Nasabah Berhasil diupdate!",
-    icon: "success",
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data Petugas Berhasil diupdate!',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/petugas";
+            }
+        })
     });
-    });
+        
 
     window.addEventListener('swal:modalDelete', event => {
-    swal({
-    title: "Success!",
-    text: "Petugas Berhasil dihapus!",
-    icon: "success",
-    });
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Petugas Berhasil dihapus!',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/petugas";
+        }})
     });
 
 </script>

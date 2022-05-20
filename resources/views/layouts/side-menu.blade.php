@@ -79,6 +79,12 @@
                 </li>
                 <li class="side-nav__devider my-6"></li>
                 <li>
+                    <a href="{{ route('artikel') }}" class="side-menu @yield('artikel')">
+                        <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                        <div class="side-menu__title"> Artikel </div>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('push-notif') }}" class="side-menu @yield('push-notifikasi')">
                         <div class="side-menu__icon"> <i data-feather="bell"></i> </div>
                         <div class="side-menu__title"> Push Notifikasi </div>

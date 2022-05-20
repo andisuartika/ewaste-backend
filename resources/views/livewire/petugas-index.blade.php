@@ -127,22 +127,24 @@
     </script>
 
 <script>
+
     function validateForm() {
         event.preventDefault();
         const url = $(this).attr('href');
-        swal({
+        Swal.fire({
             title: 'Yakin Hapus Petugas?',
-            text: 'Akun akan dihapus dari petugas!',
+            text: "Petugas yang Dihapus akan menjadi Pengguna!",
             icon: 'warning',
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
-                @this.call('delete');
-            } else {
-                swal("Data tidak dihapus!");
+            showCancelButton: true,
+            confirmButtonColor: '#27AE60',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Yakin, Hapus!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                @this.call('delete');                
             }
-        });
+        })
     
 }
 </script>

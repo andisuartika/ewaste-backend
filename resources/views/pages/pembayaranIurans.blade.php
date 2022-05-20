@@ -14,36 +14,19 @@
         @livewire('pembayaran-index')
     </div>
 
+    <script>
+        @if($message = Session::get('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Iuran Nasabah Berhasil dibayarkan.',
+            confirmButtonColor: '#27AE60',
+        })
+        @endif
+    </script>
+
 @endsection
 
 @livewireScripts
-    <script>
-        window.addEventListener('closeModal', event =>{
-            $('#header-footer-modal-preview').modal('hide');
-        });
 
-    window.addEventListener('swal:modalCreate', event => {
-        swal({
-        title: "Success!",
-        text: "Nasabah Berhasil ditambahkan!",
-        icon: "success",
-        });
-    });
-
-    window.addEventListener('swal:modalUpdate', event => {
-        swal({
-        title: "Success!",
-        text: "Data Nasabah Berhasil diupdate!",
-        icon: "success",
-        });
-    });
-
-    window.addEventListener('swal:modalDelete', event => {
-    swal({
-      title: "Success!",
-      text: "Nasabah Berhasil dihapus!",
-      icon: "success",
-    });
-  });
-    </script>
 

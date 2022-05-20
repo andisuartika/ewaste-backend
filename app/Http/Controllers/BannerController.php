@@ -73,7 +73,7 @@ class BannerController extends Controller
     {
         if($request->hasFile('gambar')){
             $file = $request->file('gambar');
-            $filename = $file->getClientOriginalName();
+            $filename = now()->timestamp . $file->getClientOriginalName();
             $folder = 'banner/';
             $file->storeAs('banner/' , $filename);
 

@@ -32,27 +32,42 @@
         });
 
     window.addEventListener('swal:modalCreate', event => {
-        swal({
-        title: "Success!",
-        text: "Nasabah Berhasil ditambahkan!",
-        icon: "success",
-        });
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Nasabah Berhasil ditambahkan!.',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/nasabah";
+        }})
+        
     });
 
     window.addEventListener('swal:modalUpdate', event => {
-        swal({
-        title: "Success!",
-        text: "Data Nasabah Berhasil diupdate!",
-        icon: "success",
-        });
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data Nasabah Berhasil diupdate!',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/nasabah";
+            }
+        })
     });
+        
 
     window.addEventListener('swal:modalDelete', event => {
-    swal({
-      title: "Success!",
-      text: "Nasabah Berhasil dihapus!",
-      icon: "success",
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Nasabah Berhasil dihapus!',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/nasabah";
+        }})
     });
-  });
-    </script>
+</script>
 

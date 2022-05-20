@@ -36,7 +36,6 @@ class NasabahIndex extends Component
     {
         User::find($this->delete_id)->delete();
         $this->dispatchBrowserEvent('swal:modalDelete');
-        return redirect(route('nasabah'));
     }
 
     public function handleStored($nasabah)

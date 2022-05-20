@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\SampahController;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GrapikController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\SampahController as ControllersSampahController;
 use App\Http\Controllers\TentangAplikasiController;
 use App\Http\Controllers\TugasPerjalananController;
 use App\Http\Controllers\ValidasiTabunganController;
+use App\Models\Artikel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,6 +100,15 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // Route::get('page/{layout}/{pageName}', [PageController::class, 'loadPage'])->name('page');
 
     Route::group(['middleware' => 'accessrole:ADMIN'], function() {
+        // ARTIKEL
+        Route::get('admin/artikel',[ArtikelController::class, 'index'])->name('artikel');
+        Route::get('admin/artikel/create',[ArtikelController::class, 'create'])->name('artikelCreate');
+        Route::post('admin/artikel/store', [ArtikelController::class, 'store'])->name('storeArtikel');
+        Route::post('admin/artikel/store/image', [ArtikelController::class, 'storeImage'])->name('storeImageArtikel');
+        Route::get('admin/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('editArtikel');
+        Route::put('admin/artikel/update/{id}', [ArtikelController::class, 'update'])->name('updateArtikel');
+        Route::get('admin/artikel/delete/{id}', [ArtikelController::class, 'destroy'])->name('deleteArtikel');
+
         // TENTANG APLIKASI
         Route::get('/admin/tentang-aplikasi', [TentangAplikasiController::class, 'index'])->name('tentang-aplikasi');
         Route::post('/admin/tentang-aplikasi/store', [TentangAplikasiController::class, 'tentangStore'])->name('storeTentang');

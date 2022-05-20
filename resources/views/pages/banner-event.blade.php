@@ -22,7 +22,6 @@
 
 <script>
 
-
     window.addEventListener('swal:modalCreate', event => {
         swal({
         title: "Success!",

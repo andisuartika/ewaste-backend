@@ -16,7 +16,9 @@
                     <a href="{{ route('editBanner', $banner->id) }}">
                         <button class="button button--sm text-white bg-theme-1 mr-2">Ubah Banner</button>
                     </a>
-                    <input wire:click="status({{ $banner->id }}, {{ $banner->status }})" type="checkbox" class="input input--switch border" value="{{ $banner->status}}" @if ($banner->status == 1) checked @endif> 
+                    <div class="flex item-center">
+                        Status <input wire:click="status({{ $banner->id }}, {{ $banner->status }})" type="checkbox" class="ml-2 input input--switch border" value="{{ $banner->status}}" @if ($banner->status == 1) checked @endif> 
+                    </div>  
             </div>
         </div>
         @endforeach

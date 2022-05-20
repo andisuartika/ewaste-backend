@@ -138,7 +138,7 @@ class ValidasiTabunganController extends Controller
             $perjalanan->save();
         }
 
-        return redirect(route('validasi-tabungan'));
+        return redirect(route('validasi-tabungan'))->with('success','updated');
     }
 
     /**

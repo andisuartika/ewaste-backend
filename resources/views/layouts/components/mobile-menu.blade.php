@@ -73,6 +73,12 @@
         </li>
         <li class="nav__devider my-6"></li>
         <li>
+            <a href="{{ route('artikel') }}" class="menu @yield('artikel')">
+                <div class="menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="menu__title"> Artikel </div>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('push-notif') }}" class="menu @yield('push-notifikasi')">
                 <div class="menu__icon"> <i data-feather="bell"></i> </div>
                 <div class="menu__title"> Push Notifikasi </div>

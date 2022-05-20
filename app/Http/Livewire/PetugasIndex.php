@@ -74,7 +74,7 @@ class PetugasIndex extends Component
         
 
         $this->resetInput();
-        return redirect(route('petugas'));
+
     }
 
     public function resetInput()
@@ -98,7 +98,7 @@ class PetugasIndex extends Component
 
         
         $this->dispatchBrowserEvent('swal:modalDelete');
-        return redirect(route('petugas'));
+
     }
 
 }

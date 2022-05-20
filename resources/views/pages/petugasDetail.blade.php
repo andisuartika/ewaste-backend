@@ -78,6 +78,7 @@
                         </div>
                         <div class="flex justify-end mt-4">
                             {{-- <a href="{{ route('deletePetugas',$petugas->id) }}" class="text-theme-6 flex items-center"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Hapus Petugas </a> --}}
+                            <a href="{{ route('petugas') }}" type="button" class="button w-20  border text-gray-700">Kembali</a>
                             <button type="submit" name="submit" class="button w-20 bg-theme-1 text-white ml-auto">Simpan</button>
                         </div>
                         
@@ -91,6 +92,16 @@
     </div>
     </div>
 
+    <script>
+        @if($message = Session::get('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data Petugas Berhasil disimpan.',
+            confirmButtonColor: '#27AE60',
+        })
+        @endif
+    </script>
 @endsection
 
 

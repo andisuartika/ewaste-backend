@@ -87,7 +87,7 @@ class PetugasController extends Controller
             'alamat' => $request->alamat,
         ]); 
 
-        return redirect(route('detailPetugas', $id));
+        return redirect(route('detailPetugas', $id))->with('success','update');
         
     }
 

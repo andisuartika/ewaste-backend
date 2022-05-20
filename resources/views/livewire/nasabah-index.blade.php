@@ -73,19 +73,21 @@
     function validateForm() {
         event.preventDefault();
         const url = $(this).attr('href');
-        swal({
+        Swal.fire({
             title: 'Yakin Hapus Nasabah?',
-            text: 'Data Nasabah akan dihapus permanen!',
+            text: "Data Nasabah akan Dihapus Permanen!",
             icon: 'warning',
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
+            showCancelButton: true,
+            confirmButtonColor: '#27AE60',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Yakin, Hapus!'
+            }).then((result) => {
+            if (result.isConfirmed) {
                 @this.call('delete');
-            } else {
-                swal("Data tidak dihapus!");
+                
             }
-        });
+        })
     
 }
 </script>

@@ -27,7 +27,9 @@ License: You must have a valid license purchased only from themeforest(the above
     @livewireStyles
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!-- sweetalert -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
 
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />

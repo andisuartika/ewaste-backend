@@ -11,40 +11,54 @@
     <h2 class="intro-y text-lg font-medium mt-10">Data Sampah</h2>
     @livewire('sampah-index')
 
+    {{-- ALERT --}}
+    <script>
+        @if($message = Session::get('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data Sampah Berhasil diubah.',
+            confirmButtonColor: '#27AE60',
+        })
+        @endif
+    </script>
 @endsection
 
 <script>
 
-
 window.addEventListener('swal:modalCreate', event => {
-    swal({
-    title: "Success!",
-    text: "Data Sampah Berhasil ditambahkan!",
-    icon: "success",
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Sampah Berhasil ditambahkan!.',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/sampah";
+        }})
+        
     });
-});
 
-window.addEventListener('swal:modalStatus', event => {
-    swal({
-    title: "Success!",
-    text: "Status Sampah Berhasil diupdate!",
-    icon: "success",
+    window.addEventListener('swal:modalStatus', event => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Status Sampah Berhasil diupdate!',
+            confirmButtonColor: '#27AE60',
+        })
     });
-});
+        
 
-window.addEventListener('swal:modalUpdate', event => {
-    swal({
-    title: "Success!",
-    text: "Data Sampah Berhasil diupdate!",
-    icon: "success",
+    window.addEventListener('swal:modalDelete', event => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data Sampah Berhasil dihapus!',
+            confirmButtonColor: '#27AE60',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location ="/admin/sampah";
+        }})
     });
-});
 
-window.addEventListener('swal:modalDelete', event => {
-swal({
-  title: "Success!",
-  text: "Nasabah Berhasil dihapus!",
-  icon: "success",
-});
-});
 </script>

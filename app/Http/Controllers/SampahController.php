@@ -82,7 +82,7 @@ class SampahController extends Controller
     {
         if($request->hasFile('image')){
             $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
+            $filename = now()->timestamp . $file->getClientOriginalName();
             $folder = 'sampah/';
             $file->storeAs('sampah/' , $filename);
 
@@ -172,7 +172,7 @@ class SampahController extends Controller
 
         
         
-        return redirect()->route('sampah');
+        return redirect()->route('sampah')->with('success','updated');
     }
 
     /**

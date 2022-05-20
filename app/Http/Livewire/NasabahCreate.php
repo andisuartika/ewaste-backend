@@ -111,7 +111,7 @@ class NasabahCreate extends Component
         }
 
         $this->resetInput();
-        return redirect(route('nasabah'));
+        // return redirect(route('nasabah'));
     }
 
     public function render()

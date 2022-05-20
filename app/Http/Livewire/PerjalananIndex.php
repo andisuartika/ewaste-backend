@@ -62,7 +62,7 @@ class PerjalananIndex extends Component
         }
 
         $this->resetInput();
-        return redirect(route('tugas-perjalanan'));
+        // return redirect(route('tugas-perjalanan'));
     }
 
     public function delete_id($id)
@@ -74,7 +74,6 @@ class PerjalananIndex extends Component
     {
         Perjalanan::find($this->delete_id)->delete();
         $this->dispatchBrowserEvent('swal:modalDelete');
-        return redirect(route('tugas-perjalanan'));
     }
 
     
