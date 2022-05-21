@@ -56,11 +56,11 @@
                     <select name="status" data-placeholder="Pilih status artikel" class="select2 w-full" >
                         <option value="">Status Artikel</option>
                         @if (isset($artikel))
-                            <option value="DRAFT" @if ($artikel->status = "DRAFT") selected @endif>Draft</option>
-                            <option value="PUBLISH" @if ($artikel->status = "PUBLISH") selected @endif>Publish</option>
+                            <option value="1" @if ($artikel->status == "1") selected @endif>Draft</option>
+                            <option value="2" @if ($artikel->status == "2") selected @endif>Publish</option>
                         @else
-                            <option value="DRAFT">Draft</option>
-                            <option value="PUBLISH">Publish</option>
+                            <option value="1">Draft</option>
+                            <option value="2">Publish</option>
                         @endif
                     </select>
                     <span class="text-xs text-red-600 dark:text-red-400">

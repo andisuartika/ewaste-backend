@@ -84,6 +84,7 @@ class PenarikanController extends Controller
             $transaksi->keterangan = $request->keterangan;
 
             $transaksi->save();
+            $mess = "ditangguhkann";
         }else{
             // JIKA TRANSAKSI DIBERHASIL
   
@@ -97,11 +98,12 @@ class PenarikanController extends Controller
 
             $nasabah->save();
             $transaksi->save();
+            $mess = "berhasil";
         }
 
         // $transaksi->status = 'BERHASIL';
 
-        return redirect(route('penarikan-saldo'));
+        return redirect(route('penarikan-saldo'))->with('success', $mess);
 
     }
 

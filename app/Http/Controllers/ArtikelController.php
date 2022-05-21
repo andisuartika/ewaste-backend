@@ -20,6 +20,12 @@ class ArtikelController extends Controller
         return view('pages.artikel');
     }
 
+    public function artikel()
+    {
+        $artikels = Artikel::latest()->paginate(10);
+        return view('artikel.artikel',compact('artikels'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -80,7 +86,7 @@ class ArtikelController extends Controller
 
         
         
-        return redirect()->route('artikel');
+        return redirect()->route('artikel')->with('success','Artikel Berhasil ditambahkan!');
         
     }
 
@@ -109,9 +115,10 @@ class ArtikelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $artikel = Artikel::where('slug',$slug)->first();
+        return view('artikel.artikel-view',compact('artikel'));
     }
 
     /**
@@ -162,12 +169,14 @@ class ArtikelController extends Controller
             $cover = $artikel->cover;
         }
 
+        $slug = Str::slug($request->title, '-');
 
         
         $artikel->title = $request->title;
         $artikel->description = $request->description;
         $artikel->content = $request->content;
         $artikel->status = $request->status;
+        $artikel->slug = $slug;
         $artikel->cover = $cover;
 
         $artikel->update();
@@ -184,7 +193,7 @@ class ArtikelController extends Controller
 
         
         
-        return redirect()->route('artikel');
+        return redirect()->route('artikel')->with('success','Artikel Berhasil diupdate!');
     }
 
     /**

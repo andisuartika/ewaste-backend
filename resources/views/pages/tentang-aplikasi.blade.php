@@ -72,6 +72,18 @@
         </div>
         <!-- END: Post Info -->
     </div>
+
+    {{-- SWEETALERT --}}
+    <script>
+        @if($message = Session::get('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '{{ $message }}',
+                    confirmButtonColor: '#27AE60',
+                })
+        @endif
+    </script>
 @endsection
 <script>
     $('.summernote').summernote({ dialogsInBody: true, });

@@ -7,11 +7,15 @@ use Livewire\Component;
 
 class ArtikelIndex extends Component
 {   
+    protected $listeners = [
+        'refreshComponent' => '$refresh'
+    ];
+
     public $delete_id;
 
     public function render()
     {
-        $artikels = Artikel::latest()->paginate(10);
+        $artikels = Artikel::orderBy('status', 'desc')->latest()->paginate(10);
         return view('livewire.artikel-index',[
             'artikels' => $artikels,
         ]);
@@ -25,8 +29,8 @@ class ArtikelIndex extends Component
         $artikel->save();
 
         $this->dispatchBrowserEvent('swal:modalStatus');
+        $this->emit('refreshComponent');
 
-        return redirect(route('artikel'));
     }
 
     public function delete_id($id)
@@ -38,6 +42,6 @@ class ArtikelIndex extends Component
     {
         Artikel::find($this->delete_id)->delete();
         $this->dispatchBrowserEvent('swal:modalDelete');
-        return redirect(route('artikel'));
+        $this->emit('refreshComponent');
     }
 }

@@ -17,40 +17,35 @@
     </div>
    
     @livewire('banner-index')
-    
+    <script>
+        @if($message = Session::get('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '{{ $message }}',
+                    confirmButtonColor: '#27AE60',
+                })
+        @endif
+    </script>
 @endsection
-
 <script>
-
-    window.addEventListener('swal:modalCreate', event => {
-        swal({
-        title: "Success!",
-        text: "Data Banner Berhasil ditambahkan!",
-        icon: "success",
-        });
-    });
-    
     window.addEventListener('swal:modalStatus', event => {
-        swal({
-        title: "Success!",
-        text: "Status Banner Berhasil diupdate!",
-        icon: "success",
-        });
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Status Banner Berhasil diupdate!',
+            confirmButtonColor: '#27AE60',
+        })
     });
-    
-    window.addEventListener('swal:modalUpdate', event => {
-        swal({
-        title: "Success!",
-        text: "Data Banner Berhasil diupdate!",
-        icon: "success",
-        });
-    });
-    
+        
+
     window.addEventListener('swal:modalDelete', event => {
-    swal({
-      title: "Success!",
-      text: "Nasabah Banner dihapus!",
-      icon: "success",
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Banner Berhasil dihapus!',
+            confirmButtonColor: '#27AE60',
+        })
     });
-    });
+
 </script>

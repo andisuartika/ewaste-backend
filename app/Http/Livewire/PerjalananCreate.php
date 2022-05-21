@@ -16,8 +16,9 @@ class PerjalananCreate extends Component
     public $users;
 
     protected $listeners = [
-        'getPerjalanan' => 'showPerjalanan'
+        'refreshComponent' => '$refresh'
     ];
+
 
     public function render()
     {
@@ -53,7 +54,7 @@ class PerjalananCreate extends Component
         $this->dispatchBrowserEvent('swal:modalCreate');
 
         $this->resetInput();
-        return redirect(route('tugas-perjalanan'));
+        $this->emit('refreshComponent');
     }
 
     public function showPerjalanan($perjalanan)

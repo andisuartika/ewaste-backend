@@ -128,6 +128,12 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::get('/admin/kontak', [TentangAplikasiController::class, 'kontakIndex'])->name('kontak');
         Route::post('/admin/kontak/store', [TentangAplikasiController::class, 'kontakStore'])->name('storeKontak');
         Route::put('/admin/kontak/update/{id}', [TentangAplikasiController::class, 'kontakUpdate'])->name('updateKontak');
+
+        // PROFILE
+        Route::get('admin/profile', [PetugasController::class, 'profile'])->name('profile');
+        Route::post('admin/profile/image', [PetugasController::class, 'storeImage']);
+        Route::get('admin/profile/change-password', [PetugasController::class, 'changePassword']);
+        Route::put('admin/profile/update-password', [PetugasController::class, 'updatePassword'])->name('updatePassword');
     });
     
     
@@ -135,6 +141,5 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
    
 });
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
+Route::get('/artikel', [ArtikelController::class, 'artikel'])->name('artikel');
+Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikelShow');

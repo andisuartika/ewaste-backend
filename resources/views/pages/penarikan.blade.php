@@ -28,9 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($transaksiPoin as $tr)
-                    
-                
+                @foreach ($transaksiPoin as $tr)                
                     <tr>
                         <td class="border-b">
                             <div class="font-medium whitespace-no-wrap">{{ $tr->user()->get()->implode('name') }}</div>
@@ -150,5 +148,24 @@
         </table>
     </div>
     @endif
+    <script>
+        @if($message = Session::get('success'))
+            @if ($message == 'ditangguhkan')
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Ditangguhkah',
+                    text: 'Transaksi Telah ditangguhkan!',
+                    confirmButtonColor: '#27AE60',
+                })
+            @else
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: 'Transaksi Berhasil dilakukan!',
+                    confirmButtonColor: '#27AE60',
+                })
+            @endif
+        @endif
+    </script>
     <!-- END: Datatable -->
 @endsection

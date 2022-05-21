@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div>
-            <div class="absolute bottom-0 text-white px-5 pb-6 z-10"><a href="" class="block font-medium text-xl mt-3">{{ $artikel->title }}</a> </div>
+            <div class="absolute bottom-0 text-white px-5 pb-6 z-10"><a href="{{ route('artikelShow',$artikel->slug) }}" class="block font-medium text-xl mt-3">{{ $artikel->title }}</a> </div>
         </div>
         <div class="p-5 text-gray-700">{!! Str::limit($artikel->content, 150) !!}</div>
         <div class="flex items-center px-5 py-3 border-t border-gray-200">
@@ -37,19 +37,21 @@
     function validateForm() {
         event.preventDefault();
         const url = $(this).attr('href');
-        swal({
+        Swal.fire({
             title: 'Yakin Hapus Artikel?',
-            text: 'Artikel akan dihapus permanen!',
+            text: "Artikel akan dihapus permanen!",
             icon: 'warning',
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
+            showCancelButton: true,
+            confirmButtonColor: '#27AE60',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Yakin, Hapus!'
+            }).then((result) => {
+            if (result.isConfirmed) {
                 @this.call('delete');
-            } else {
-                swal("Artikel tidak dihapus!");
+                
             }
-        });
+        })
     
 }
 </script>

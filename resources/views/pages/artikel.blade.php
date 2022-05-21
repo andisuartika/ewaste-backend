@@ -32,23 +32,36 @@
 
 @livewire('artikel-index')
 
+<script>
+    @if($message = Session::get('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ $message }}',
+            confirmButtonColor: '#27AE60',
+        })
+    @endif
+</script>
 
 @endsection
 
 <script>
     window.addEventListener('swal:modalStatus', event => {
-        swal({
-        title: "Success!",
-        text: "Status Artikel Berhasil diupdate!",
-        icon: "success",
-        });
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Status Artikel Berhasil diupdate!',
+            confirmButtonColor: '#27AE60',
+        })
     });
+        
 
     window.addEventListener('swal:modalDelete', event => {
-        swal({
-        title: "Success!",
-        text: "Artikel Berhasil dihapus!",
-        icon: "success",
-        });
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Artikel Berhasil dihapus!',
+            confirmButtonColor: '#27AE60',
+        })
     });
 </script>

@@ -75,7 +75,7 @@ class TentangAplikasiController extends Controller
         ]);
 
 
-        return redirect(route('tentang-aplikasi'));
+        return redirect(route('tentang-aplikasi'))->with('success','Informasi Aplikasi Berhasil diupdate!');
     }
 
 
@@ -93,7 +93,7 @@ class TentangAplikasiController extends Controller
         ]);
 
 
-        return redirect(route('tentang-aplikasi'));
+        return redirect(route('tentang-aplikasi'))->with('success','Informasi Aplikasi Berhasil diupdate!');
     }
 
     // PANDUAN APLIKASI
@@ -130,7 +130,7 @@ class TentangAplikasiController extends Controller
         ]);
 
 
-        return redirect(route('panduan-aplikasi'));
+        return redirect(route('panduan-aplikasi'))->with('success','Panduan Aplikasi Berhasil diupdate!');
     }
 
     // SYARAT DAN KETENTUAN APLIKASI
@@ -167,7 +167,7 @@ class TentangAplikasiController extends Controller
         ]);
 
 
-        return redirect(route('snk-aplikasi'));
+        return redirect(route('snk-aplikasi'))->with('success','Syarat dan Ketentuan Aplikasi Berhasil diupdate!');
     }
 
     // KONTAK APLIKASI
@@ -246,7 +246,7 @@ class TentangAplikasiController extends Controller
         ]);
 
 
-        return redirect(route('kontak'));
+        return redirect(route('kontak'))->with('success','Kontak Berhasil diupdate!');
     }
 
     /**

@@ -66,7 +66,7 @@ class BannerController extends Controller
 
         
         
-        return redirect()->route('banner');
+        return redirect()->route('banner')->with('success','Banner Berhasil ditambahkan!');
     }
 
     public function storeImage(Request $request)
@@ -157,7 +157,7 @@ class BannerController extends Controller
 
         
         
-        return redirect()->route('banner');
+        return redirect()->route('banner')->with('success','Banner Berhasil diupdate!');
     }
 
     /**

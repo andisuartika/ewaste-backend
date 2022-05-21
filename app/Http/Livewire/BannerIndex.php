@@ -7,9 +7,13 @@ use Livewire\Component;
 
 class BannerIndex extends Component
 {
+    protected $listeners = [
+        'refreshComponent' => '$refresh'
+    ];
+
     public function render()
     {
-        $banners = Banner::orderBy('status', 'desc')->get();
+        $banners = Banner::orderBy('status', 'desc')->latest()->paginate(9);
         return view('livewire.banner-index',[
             'banners' => $banners
         ]);
@@ -23,7 +27,6 @@ class BannerIndex extends Component
         $banner->save();
 
         $this->dispatchBrowserEvent('swal:modalStatus');
-
-        return redirect(route('banner'));
+        $this->emit('refreshComponent');
     }
 }

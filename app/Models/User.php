@@ -34,6 +34,7 @@ class User extends Authenticatable
         'points',
         'roles',
         'password',
+        'profile_photo_path'
     ];
 
     /**
