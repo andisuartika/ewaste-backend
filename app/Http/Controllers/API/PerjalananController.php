@@ -64,13 +64,17 @@ class PerjalananController extends Controller
 
     public function updateByPetugas(Request $request, $id)
     {
+        $now = Carbon::now();
         $status = $request->input('status');
         $id_petugas = Auth::user()->id;
 
         $perjalanan = Perjalanan::find($id);
 
         if ($perjalanan->id_petugas == $id_petugas) {
-
+            
+            if($status == 'SELESAI'){
+                $perjalanan->waktuSelesai = $now;
+            }
             $perjalanan->status = $status;
             $perjalanan->save();
 
