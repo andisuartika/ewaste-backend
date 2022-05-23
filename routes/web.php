@@ -4,6 +4,7 @@ use App\Http\Controllers\API\SampahController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FCMController;
 use App\Http\Controllers\GrapikController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\PageController;
@@ -134,6 +135,11 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::post('admin/profile/image', [PetugasController::class, 'storeImage']);
         Route::get('admin/profile/change-password', [PetugasController::class, 'changePassword']);
         Route::put('admin/profile/update-password', [PetugasController::class, 'updatePassword'])->name('updatePassword');
+
+        // FCM
+        Route::post('admin/push-notification',[PushNotifController::class, 'send'])->name('sendFCM');
+        Route::get('admin/push-notif/create',[PushNotifController::class, 'create'])->name('createFCM');
+        Route::post('/admin/notification/store/image',[PushNotifController::class, 'storeImage']);
     });
     
     
@@ -141,5 +147,5 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
    
 });
 
-Route::get('/artikel', [ArtikelController::class, 'artikel'])->name('artikel');
+Route::get('/artikel', [ArtikelController::class, 'artikel']);
 Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikelShow');

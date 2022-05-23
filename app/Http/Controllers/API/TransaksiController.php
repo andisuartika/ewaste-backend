@@ -148,4 +148,30 @@ class TransaksiController extends Controller
             404
         );
     }
+
+    public function pembayaran(Request $request)
+    {
+        $request->validate([
+            'total' =>  'required',
+        ]);   
+
+        $user = Auth::user();
+
+        if($user->points >= $request->total)
+        {
+            $user->points = $user->points - $request->total;
+            $user->iurans = 0;
+            $user->save();
+            return ResponseFormatter::success(
+                $user,
+                'Iuran Sampah Berhasil dibayarkan'
+            );
+        }else{
+            return ResponseFormatter::error(
+                null,
+                'Point anda tidak cukup',
+                404
+            );
+        }
+    }
 }

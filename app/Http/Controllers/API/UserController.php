@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Models\FCM;
 use App\Models\Transaksi;
 use App\Models\TransaksiItems;
 use App\Models\TransaksiPoin;
@@ -287,5 +288,32 @@ class UserController extends Controller
             );
         }
 
+    }
+
+    // FCM TOKEN
+    public function fcm(Request $request)
+    {
+        try {
+            $request->validate([
+                'token' => ['required'],
+            ]);
+
+            FCM::updateorCreate([
+                'user' => Auth::user()->id,
+            ],[
+                'token' => $request->token,
+            ]);
+
+            $token = FCM::where('user', Auth::user()->id)->first();
+
+            return ResponseFormatter::success([
+                'FCM' => $token,
+            ], 'Token Updated');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Shometing went wrong',
+                'error' => $error,
+            ], 'Shometing Error', 500);
+        }
     }
 }

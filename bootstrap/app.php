@@ -52,4 +52,7 @@ $app->singleton(
 |
 */
 
+
+$app->register(Kawankoding\Fcm\FcmServiceProvider::class);
+
 return $app;

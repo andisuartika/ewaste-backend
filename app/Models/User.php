@@ -86,4 +86,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(TransaksiPoin::class, 'id_user', 'id');
     }
+
+    public function fcmToken()
+    {
+        return $this->belongsTo(User::class, 'user', 'id');
+    }
 }

@@ -41,6 +41,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/transaksi', [TransaksiController::class, 'all']);
     Route::post('/transaksi', [TransaksiController::class, 'transaksiMasuk']);
     Route::post('/transaksi/nasabah', [TransaksiController::class, 'transaksiByNasabah']);
+    Route::post('/transaksi/pembayaran', [TransaksiController::class, 'pembayaran']);
 
     // Perjalanan
     Route::get('/perjalanan', [PerjalananController::class, 'all']);
@@ -48,7 +49,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/perjalanan/petugas/{id}', [PerjalananController::class, 'updateByPetugas']);
     Route::post('/perjalanan', [PerjalananController::class, 'createPerjalanan']);
 
+    // Transaksi Poin
     Route::post('/transaksi/poin', [TransaksiPoin::class, 'store']);
+
+    // FCM TOKEN
+    Route::post('fcm-token',[UserController::class, 'fcm']);
 });
 
 Route::get('sampah', [SampahController::class, 'all']);
