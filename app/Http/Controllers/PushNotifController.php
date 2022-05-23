@@ -54,6 +54,7 @@ class PushNotifController extends Controller
         ],$message);
 
         $to = "allDevice";
+        $image= NULL;
 
         if($request->isScheduler != 'on'){
             $scheduler = Carbon::now();
@@ -61,9 +62,11 @@ class PushNotifController extends Controller
             $scheduler = $request->schedule;
         }
 
-        $temporaryFile = TemporaryFile::where('folder', $request->image)->first();
+        if($request->image){
+            $temporaryFile = TemporaryFile::where('folder', $request->image)->first();
 
-        $image = url('/laravel/storage/app/public/').$temporaryFile->folder.$temporaryFile->filename;
+            $image = url('/laravel/storage/app/public/').$temporaryFile->folder.$temporaryFile->filename;
+        }
 
         $notif = Notification::create([
             'title' => $request->title,
@@ -84,6 +87,8 @@ class PushNotifController extends Controller
             'soundName' => 'default',
         ];
 
+        
+
         // if($request->image){
         //     $image = [
         //         'image' => $notification->image,
@@ -100,16 +105,21 @@ class PushNotifController extends Controller
             $data = $data + $scheduleTime;
         }
 
+
         fcm()
             ->toTopic($to)
             ->priority($notif->priority)
             ->notification($data)
+            ->data([
+                $request->keyData => $request->data,
+            ])
             ->send();
-        
-        if($temporaryFile){
-            // $validasi->addMedia(storage_path('app/public/files/tmp/' . $request->file . '/' . $temporaryFile->filename))->toMediaCollection('files');
-            // rmdir(storage_path('app/public/files/tmp/' . $request->file));
-            $temporaryFile->delete();
+        if($request->image){
+            if($temporaryFile){
+                // $validasi->addMedia(storage_path('app/public/files/tmp/' . $request->file . '/' . $temporaryFile->filename))->toMediaCollection('files');
+                // rmdir(storage_path('app/public/files/tmp/' . $request->file));
+                $temporaryFile->delete();
+            }
         }
 
         return redirect()->route('push-notif')->with('success','Notifikasi Berhasil dibuat!');
